@@ -1,0 +1,6 @@
+<div class="main">
+    <a class="article shadow1" href="/articol/{{article.url}}" *ngFor="let article of articles">
+        <p class="article-title">{{article.title}}</p>
+        <img class="article-image" src="{{ article.cover }}">
+    </a>
+</div>

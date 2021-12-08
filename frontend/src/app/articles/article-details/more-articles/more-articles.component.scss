@@ -1,0 +1,40 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.article {
+    height: 12rem;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 7%;
+    &:hover {
+        .article-image {
+            filter: brightness(0.4);
+            transform: scale(1.2);
+        }
+    }
+    .article-image {
+        height: 12rem;
+        width: 100%;
+        transition: transform .2s;
+        filter: brightness(70%);
+        object-fit: cover;
+        overflow: hidden;
+    }
+    .article-title {
+        left: 10%;
+        width: 80%;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: normal;
+        position: absolute;
+        color: #fff;
+        z-index: 1;
+    }
+}

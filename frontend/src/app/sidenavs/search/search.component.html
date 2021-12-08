@@ -1,0 +1,31 @@
+<div class="main color1">
+    <mat-icon class="close-button" (click)="onCloseSearchNav()">close</mat-icon>
+    <mat-form-field [class.activated]="focused" [class.tag]="searchText[0] == '#'" [class.unactivated]="!focused">
+        <mat-label>Caută</mat-label>
+        <input matInput (input)="onSearch(search.value)" [(ngModel)]="searchText" #search>
+    </mat-form-field>
+    <div class="articles" *ngIf="articles.length > 0 && this.focused && !loading">
+        <a class="article color1 shadow1 hoverable" *ngFor="let article of articles" (click)="onCloseSearchNav()" href="articol/{{article.url}}">
+            <div class="article-image" >
+                <img src="{{ article.cover }}">
+            </div>
+            <div class="article-content">
+                <h1 class="article-title">{{ article.title }}</h1>
+                <p class="article-preview-text hide-on-mob">{{ article.text | articlePreview : 45 }}</p>
+                <p class="article-preview-text hide-on-large">{{ article.text | articlePreview : 12 }}</p>
+            </div>
+        </a>
+    </div>
+    <div *ngIf="loading" class="articles loading">
+        <div class="article color2 shadow1 hoverable" *ngFor="let article of [1, 2, 3, 4, 5]">
+            <div class="article-image" >
+                <div class="box"></div>
+            </div>
+            <div class="article-content">
+                <h1></h1>
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+    <h1 class="no-result" *ngIf="focused && articles.length == 0">Niciun rezultat</h1>
+</div>

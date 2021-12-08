@@ -1,0 +1,13 @@
+<div class="main" *ngIf="surveys?.length">
+    <div class="survey color1 shadow1">
+        <h1><span *ngIf="surveys.length > 1">{{ selected + 1 }}. </span>{{ surveys[selected].question}}</h1>
+        <div class="arrows" *ngIf="surveys?.length - 1">
+            <mat-icon class="arrow-left" (click)="changeSurvey(1)">chevron_left</mat-icon>
+            <mat-icon class="arrow-right" (click)="changeSurvey(0)">chevron_right</mat-icon>
+        </div>
+        <div class="variant" [class.color2]="variant?.voted" (click)="onVote(variant?.id)" *ngFor="let variant of surveys[selected]?.variants">
+            <h3 class="variant_content">{{ variant.content }}<span class="votes">{{ variant.votes }}</span></h3>
+            <div class="line-voted color3" [style.width.%]="variant.votes * 100 / surveys[selected].votes "></div>
+        </div>
+    </div>
+</div>

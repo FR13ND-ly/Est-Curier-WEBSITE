@@ -1,0 +1,26 @@
+<h1>Edită Imaginea</h1>
+<div class="main">
+    <div class="left-side">
+        <mat-form-field appearance="fill">
+            <mat-label>Legendă</mat-label>
+            <input matInput [(ngModel)]="data.legend">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Dimensiune Imagine</mat-label>
+            <mat-select [(ngModel)]="data.size">
+                <mat-option value="25%">Miniatură</mat-option>
+                <mat-option value="50%">Medie</mat-option>
+                <mat-option value="100%">Mare</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-button-toggle-group [(ngModel)]="data.align">
+            <mat-button-toggle value="left"><mat-icon>format_align_left</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="center"><mat-icon>format_align_center</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="right"><mat-icon>format_align_right</mat-icon></mat-button-toggle>
+        </mat-button-toggle-group>
+        <button mat-raised-button color="accent" style="width: 100%;" [mat-dialog-close]="data">Continuă</button>  
+    </div>
+    <div class="right-side">
+        <img class="image" src="{{ data.actualImage }}">
+    </div>
+</div>

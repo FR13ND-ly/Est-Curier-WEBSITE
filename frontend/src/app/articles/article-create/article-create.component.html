@@ -1,0 +1,71 @@
+<div class="main">
+    <div class="main-content">
+        <div class="wrapper color1 shadow1">
+        <mat-form-field appearance="fill" class="title-input">
+            <mat-label>Titlu</mat-label>
+            <input matInput [(ngModel)]="article.title">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="subtitle-input">
+            <mat-label>Subtitlu</mat-label>
+            <input matInput [(ngModel)]="article.subtitle">
+        </mat-form-field>
+        </div>
+        <div class="wrapper color1 shadow1 survey">
+            <app-text-editor [(text)]="article.text"></app-text-editor>
+        </div>
+        <div class="wrapper color1 shadow1 survey">
+            <app-surveys [surveys]="article.surveys"></app-surveys>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="wrapper color1 shadow1">
+            <h1>Salvează</h1>
+            <section>
+                <mat-checkbox [(ngModel)]="article.draft">Ciornă</mat-checkbox>
+            </section>
+            <section>
+                <mat-checkbox [(ngModel)]="article.hideAuthor">Nu afișa autorul</mat-checkbox>
+            </section>
+            <section>
+                <mat-checkbox [(ngModel)]="article.hideLikesCount">Nu afișa numărul de like-uri</mat-checkbox>
+            </section>
+            <section>
+                <mat-checkbox [(ngModel)]="article.hideViewsCount">Nu afișa numărul de vizualizări</mat-checkbox>
+            </section>
+            <section>
+                <mat-checkbox [(ngModel)]="article.hideDate">Nu afișa data publicării</mat-checkbox>
+            </section> 
+            <section>
+                <mat-checkbox [(ngModel)]="article.disableComments">Dezactivează comentariile</mat-checkbox>
+            </section>
+            <button mat-flat-button color="primary" class="save-button" (click)="onAddNewArticle()" *ngIf="!article.draft">{{ article.id ? 'Publică Modificările' : 'Publică' }}</button>
+            <button mat-flat-button color="warn" class="save-button" (click)="onAddNewArticle()" *ngIf="article.draft">Salvează</button>
+            <div *ngIf="article.id" style="margin-top: 2%;">
+                <button mat-flat-button color="accent" style="margin-right: 2%;" (click)="onAccesArticle()">Accesează articolul</button>
+                <button mat-flat-button color="warn" (click)="onDeleteArticle()">Șterge</button>
+            </div>
+        </div>
+        <div class="tags">
+            <app-tags [tags]="article.tags"></app-tags>
+        </div>
+        <div class="wrapper color1 shadow1">
+            <h3>Imagine reprezentativă</h3>
+            <div class="file-button" (click)="setCoverImg()">
+                <img [src]="coverImage">
+            </div>
+            <mat-form-field style="width: 100%;">
+                <input matInput placeholder="Descriere" [(ngModel)]="article.coverDescription">
+            </mat-form-field>
+        </div>
+        <div class="more-articles wrapper color1 shadow1">
+            <h3>Articole la temă</h3>
+            <mat-form-field class="title-input" *ngFor="let bonusArticle of article.moreArticles; let i = index">
+                <input matInput placeholder="{{ i + 1 }}. Articol" [(ngModel)]="article.moreArticles[i][0]">
+                <button matSuffix mat-icon-button>
+                    <mat-icon (click)="article.moreArticles.splice(i, 1)">highlight_off</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-stroked-button (click)="article.moreArticles.push([''])">Adaugă un articol la temă</button>
+        </div>
+    </div>
+</div>

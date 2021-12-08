@@ -1,0 +1,204 @@
+.main {
+    margin: 2% 0 .3% 0;
+    display: flex;
+}
+
+.articles {
+    width: 69%;
+    &-header {
+        line-height: normal;
+        font-size: 2.5rem;
+    }
+    .article {
+        animation: tieSlideInUp .5s;
+        text-decoration: none;
+        display: flex;
+        border-radius: 10px;
+        margin-bottom: 3%;
+        overflow: hidden;
+        &:hover .article-title {
+            color: #2196f3;
+        }
+        .article-image {
+            width: 18%!important;
+            img {
+                object-fit: cover; 
+                overflow: hidden;
+                width: 100%;
+                height: 100%!important;
+            }
+        }
+        .article-content {
+            width: 90%;
+            margin-top: 1%;
+            margin-left: 2%;
+            .article-title {
+                font-weight: 500;
+                margin-top: 1.6%;
+                margin-bottom: 1%;
+                width: 90%;
+                transition: color .2s;
+            }
+            .article-preview-text {
+                width: 90%;
+            }
+        }
+    }
+}
+
+.article-details {
+    border-top: 1px solid;
+    margin-right: 10%;
+    display: flex;
+    padding-top: .2rem;
+    padding-bottom: 1rem;
+    font-size: .8rem;
+    span {
+        margin-top: 1.5%;
+        display: flex;
+        mat-icon {
+            line-height: inherit;
+            padding-right: 0.3rem;
+            padding-left: 0.5rem
+        }
+    }
+}
+
+.getMoreArticles {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    button {
+        width: 100%;
+    }
+}
+
+.side {
+    max-width: 30%;
+    margin-left: 1.3%;
+    .api-logo {
+        margin-bottom: 4%;
+        width: 100%;
+        border-radius: 10px;
+    }
+    .weekly-image {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        img {
+            width: 100%;
+        }
+        .weekly-image-details {
+            padding: 5% 0 0 5%;
+            .weekly-image-title {
+                margin-bottom: 0;
+            }
+        }
+        .weekly-image-name {
+            padding: 2% 0 0% 5%;
+        }
+    }
+}
+
+.widget {
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: 4%;
+    overflow: hidden;
+    width: 100%;
+    mat-icon {
+        position: absolute;
+        right: 2%;
+        top: 2%;
+        z-index: 1%;
+        color: #fff;
+    }
+    a {
+        text-decoration: none;
+    }
+    img {
+        width: 100%;
+    }
+    h3 {
+        padding: 2% 10% 0% 4%;
+    }
+}
+
+.loading {
+    h1 {
+        margin-top: 1%;
+        width: 70%;
+        height: 2rem;
+        border-radius: 10px;
+        background-color: #ccc;
+        animation: loading 1.4s infinite alternate;
+    }
+    h2 {
+        width: 90%;
+        height: 5rem;
+        border-radius: 10px;
+        background-color: #ccc;
+        animation: loading 1.4s infinite alternate;
+    }
+    .box {
+        width: 100%;
+        height: 15rem;
+        background-color: #ccc;
+        border-radius: 10px;
+        margin-bottom: 4%;
+        animation: loading 1.4s infinite;
+    }
+    .article-image-box {
+        width: 100%;
+        height: 10rem;
+        background-color: #ccc;
+        animation: loading 1.4s infinite;
+    }
+    .side {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        margin-top: 0%;
+        width: 100%;
+    }
+    
+    .articles {
+        width: 100%;
+        .article {
+            flex-direction: column;
+            border-radius: 10px;
+            margin-top: 6%;
+            .article-image {
+                width: 100%!important;
+                img {
+                    height: 15rem!important;
+                    object-fit: cover; 
+                    overflow: hidden;
+                }
+            }
+            .article-content {
+                width: 92%;
+                margin-top: 1%;
+                margin-left: 4%;
+                .article-title {
+                    font-weight: 500;
+                    margin-top: 1.6%;
+                    width: 90%;
+                    font-size: 18px;
+                    line-height: normal;
+                    margin-bottom: 2%;
+                }
+                .article-preview-text {
+                    width: 100%;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .article-details {
+        margin-right: 2%;
+    }
+}

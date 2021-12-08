@@ -1,0 +1,22 @@
+<button mat-icon-button class="add-survey-button" *ngIf="surveys.length > 0" (click)="onAddNewSurvey()"><mat-icon>add_circle_outline</mat-icon></button>
+<h1>Chestionare</h1>
+<button mat-raised-button color="primary" *ngIf="surveys.length == 0" (click)="onAddNewSurvey()">Adaugă un chestionar</button>
+<mat-tab-group [(selectedIndex)]="selectedIndex" dynamicHeight>
+    <mat-tab label="{{ i + 1 }} chestionar" *ngFor="let survey of surveys; let i = index">
+        <mat-form-field appearance="fill" class="survey-question">
+            <mat-label>Întrebarea chestionarului</mat-label>
+            <input matInput [(ngModel)]="survey.question">
+        </mat-form-field>
+        <div class="question" *ngFor="let answer of survey.answers; let j = index">
+            <mat-form-field appearance="outline">
+                <mat-label>Variantă de răspuns</mat-label>
+                <input matInput [(ngModel)]="answer[0]">
+                <button matSuffix mat-icon-button>
+                    <mat-icon (click)="survey.answers.splice(j, 1)">delete</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <button mat-stroked-button color="accent" (click)="survey.answers.push([''])">Adaugă o variantă de răspuns</button>
+        <button mat-stroked-button color="warn" style="margin-left: 1rem;" (click)="surveys.splice(i, 1)">Șterge chestionarul</button>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,19 @@
+<div class="main">
+    <div class="articles">
+        <a class="article color1 shadow1 hoverable" *ngFor="let article of articles" href="articol/{{article.url}}">
+            <div class="article-image" >
+                <img src="{{ article.cover }}">
+            </div>
+            <div class="article-content">
+                <h1 class="article-title">{{ article.title }}</h1>
+                <p class="article-preview-text hide-on-mob">{{ article.text | articlePreview : 35 }}</p>
+                <p class="article-preview-text hide-on-large">{{ article.text | articlePreview : 20 }}</p>
+                <div class="article-details">
+                    <span *ngIf="!article?.hideDate"><mat-icon style="padding-left: 0;">access_time</mat-icon> {{ article?.date }}</span>
+                    <span *ngIf="!article?.hideAuthor" class="hide-on-mob"><mat-icon>contacts</mat-icon> {{ article?.author}}</span>
+                    <span *ngIf="!article?.hideViewsCount"><mat-icon>remove_red_eye</mat-icon> {{ article?.views }}</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

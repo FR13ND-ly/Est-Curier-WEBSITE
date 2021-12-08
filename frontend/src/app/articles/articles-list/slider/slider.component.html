@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="slider" *ngIf="!loading">
+        <a class="slide color1 shadow1 hoverable" *ngFor="let slide of slides" style="background-image: url('{{ slide.cover }}');" href="/articol/{{ slide.url }}">
+            <h1 class="slide-text">{{ slide.title }}</h1>
+            <img class="slide-image" src="{{ slide.cover }}">
+        </a>
+        <div class="more-articles shadow2" (click)="searchLongReads()" title="Mai multe LongRead-uri">
+            <mat-icon>apps</mat-icon>
+        </div>
+    </div>
+    <div class="slider loading" *ngIf="loading">
+        <div class="box" *ngFor="let slide of [1, 2, 3, 4]"></div>
+    </div>
+    <!-- <div class="create-user-illustration inversed-color">
+        <div class="create-user-illustration-content ">
+            <img class="feature-img" src="https://cdni.iconscout.com/illustration/premium/thumb/vector-office-work-in-summer-season-desire-to-rest-2888689-2603145.png">
+            <p class="title">Fii și tu membru Est-Curier!</p>
+            <p class="subtitle">Cu profil pe <font style="color: #0288d1;">estcurier.md</font> poți:</p>
+            <li class="list-item">Pune like-uri</li>
+            <li class="list-item">Scrie comentarii</li>
+            <li class="list-item">Răspunde la chestionare</li>
+            <li class="list-item">Folosește liste</li>
+            <li class="list-item">și multe altele</li>
+            <button mat-flat-button color="primary" class="register-btn">Înregistrează-te</button>
+        </div>
+    </div> -->
+</div>

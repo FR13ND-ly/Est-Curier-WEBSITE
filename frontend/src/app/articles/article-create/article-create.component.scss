@@ -1,0 +1,67 @@
+.main {
+    margin-bottom: 2%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.main-content {
+    width: 76%;
+}
+
+.sidebar {
+    margin-left: 2%;
+    width: 25%;
+}
+
+.wrapper {
+    padding: 1.4rem;
+    border-radius: 10px;
+}
+
+.title-input {
+    width: 100%;
+}
+
+.tags {
+    margin-top: 1rem;
+}
+
+.more-articles {
+    margin-top: 1rem;
+}
+
+.title-text-wrapper {
+    padding: 1.4rem;
+    border-radius: 10px;
+}
+.subtitle-input {
+    width: 100%;
+    margin-bottom: -2%;
+}
+.info {
+    float: right;
+}
+
+.survey {
+    margin-top: 1rem;
+}
+
+.save-button {
+    margin-top: .8rem;
+}
+
+.file-button {
+    height: 20%;
+    width: 100%;
+}
+
+img {
+    overflow:hidden; 
+    object-fit: cover;
+    width: 100%; 
+    height: 10rem; 
+    background-color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}

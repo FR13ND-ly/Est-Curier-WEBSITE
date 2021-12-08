@@ -1,0 +1,88 @@
+.main {
+}
+
+.add-comment {
+    display: flex;
+    &-user-photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: .5rem;
+    }
+}
+
+.add-comment-input {
+    width: 100%;
+    margin-top: -1.5rem;
+}
+
+.add-comment-button {
+    float: right; 
+    margin-top: -.7rem;
+}
+
+.comments {
+    margin-top: 2rem;
+}
+
+.comments-count {
+    margin-top: 1rem;
+}
+
+.comment-delete {
+    right: 0;
+    display: none;
+    position: absolute;
+}
+
+.comment {
+    margin-top: 1.2rem;
+    display: flex;
+    position: relative;
+    animation: commentAppear .5s;
+    &:hover {
+        .comment-delete{
+            display: block;
+        }
+    }
+    &-user-photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: .5rem;
+    }
+    &-user-name {
+        font-weight: 500;
+        margin-bottom: .2rem;
+    }
+    &-date {
+        margin-left: .5rem;
+        font-size: 10px;
+        font-weight: normal;
+    }
+}
+
+.admin {
+    color: #1565c0;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+    h3 {
+        margin-top: -3%;
+        line-height: normal;
+        font-size: .8rem;
+        margin-bottom: -5%;
+    }
+}
+
+@keyframes commentAppear {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

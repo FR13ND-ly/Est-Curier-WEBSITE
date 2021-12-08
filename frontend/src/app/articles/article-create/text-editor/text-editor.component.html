@@ -1,0 +1,66 @@
+<div class="main">
+    <div class="menu">
+        <button mat-stroked-button (click)="format('bold')"><mat-icon>format_bold</mat-icon></button>
+        <button mat-stroked-button (click)="format('italic')"><mat-icon>format_italic</mat-icon></button>
+        <button mat-stroked-button (click)="format('underline')"><mat-icon>format_underline</mat-icon></button>
+        <button mat-stroked-button (click)="format('strikethrough')"><mat-icon>format_strikethrough</mat-icon></button>
+        <button mat-stroked-button (click)="format('insertUnorderedList')"><mat-icon>format_list_bulleted</mat-icon></button>
+        <button mat-stroked-button (click)="format('insertOrderedList')"><mat-icon>format_list_numbered</mat-icon></button>
+        <button mat-stroked-button (click)="format('justifyLeft')"><mat-icon>format_align_left</mat-icon></button>
+        <button mat-stroked-button (click)="format('justifyCenter')"><mat-icon>format_align_center</mat-icon></button>
+        <button mat-stroked-button (click)="format('justifyRight')"><mat-icon>format_align_right</mat-icon></button>
+        <button mat-stroked-button (click)="format('undo')"><mat-icon>undo</mat-icon></button>
+        <button mat-stroked-button (click)="format('redo')"><mat-icon>redo</mat-icon></button>
+        <button mat-stroked-button (click)="format('removeFormat')"><mat-icon>format_clear</mat-icon></button>
+    </div>
+    <div class="menu">
+        <mat-form-field appearance="outline">
+            <mat-label>Culoare Text</mat-label>
+            <mat-select>
+            <mat-option *ngFor="let color of colors" (click)="format('foreColor', color[1])">
+                {{ color[0] }}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Culoare Fundal</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let color of colors" (click)="format('backColor', color[1])">
+                    {{ color[0] }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Format</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let formatType of formats" (click)="format('formatBlock', formatType[1])">
+                    {{ formatType[0] }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Font</mat-label>
+            <mat-select>
+            <mat-option *ngFor="let font of fonts" (click)="format('fontname', font)">
+                {{ font }}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="menu"  style="margin-top: -2.35%; margin-bottom: 1%;">
+        <div class="menu">
+            <button mat-stroked-button style="margin-right: 2%;" (click)="onAddImage()"><mat-icon>add_a_photo</mat-icon></button>
+            <button mat-stroked-button style="margin-right: 2%;" (click)="onAddVideo()"><mat-icon>video_call</mat-icon></button>
+            <input type="file" id="pdf" style="display: none;" (change)="onAddPdf($event)">
+            <button mat-stroked-button style="margin-right: 2%;"><label for="pdf">.pdf</label></button>
+        </div>
+        <button mat-stroked-button (click)="onChangeCode()">
+            <mat-icon>{{ code? 'text_fields' : 'code' }}</mat-icon>
+        </button>
+    </div>
+    <div contenteditable [innerHTML]="content" id="text-editor" name="text-editor" class="text-editor" #textEditor (input)="text = textEditor.innerHTML; textChange.emit(textEditor.innerHTML);" *ngIf="!code">
+    </div>
+    <mat-form-field appearance="outline" *ngIf="code" class="code-editor" (input)="content = text; textChange.emit(textEditor.innerHTML);">
+        <textarea matInput [(ngModel)]="text"></textarea>
+    </mat-form-field>
+</div>

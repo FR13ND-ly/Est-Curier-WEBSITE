@@ -1,0 +1,93 @@
+<div class="main" *ngIf="!loading">
+    <div class="article">
+        <div class="admin-menu hide-on-mob" *ngIf="user?.isStaff">
+            <button mat-raised-button color="primary" style="margin-right: 5%" routerLink="/edita-articol/{{ url }}">
+                Editează
+            </button>
+            <button (click)="onDeleteArticle()" mat-raised-button color="warn" routerLink="/">Șterge</button>
+        </div>
+        <div class="tag-wrapper">
+            <div class="tag shadow1 hoverable color1" (click)="onSearchByTag(tag)" *ngFor="let tag of article?.tags">#{{ tag }}</div>
+        </div>
+        <span class="article-title"
+            >{{ article?.title }}</span
+        >
+        <h1 class="article-subtitle" *ngIf="article?.subtitle.trim()">{{ article?.subtitle }}</h1>
+        <div class="article-main-image-wrapper">
+            <div class="description" *ngIf="article.coverDescription.trim()">
+                <div class="description-content"><mat-icon>image</mat-icon><p>{{ article.coverDescription }}</p></div>
+            </div>
+            <img
+                class="article-main-image"
+                src="{{ article?.cover }}"
+            />
+        </div>
+        <div class="article-details">
+            <p>
+                <span *ngIf="!article?.hideDate"><mat-icon color="primary" style="padding-left: 0;">access_time</mat-icon> {{ article?.date }}</span>
+                <span *ngIf="!article?.hideAuthor" class="hide-on-mob"><mat-icon color="primary">contacts</mat-icon> {{ article?.author}}</span>
+                <span *ngIf="!article?.hideViewsCount"><mat-icon color="primary">remove_red_eye</mat-icon> {{ article?.views + 1 }}</span>
+            </p>
+        </div>
+        <p class="article-text" id="article-text" [innerHTML]="article?.text"></p>
+    </div>
+    <app-survey [id]="article.id"></app-survey>
+    <div class="article-actions color1">
+        <button mat-raised-button class="like-button" (click)="onAddLike()">
+            <mat-icon>{{ likes.liked }}</mat-icon><div style="display: inline; font-size: 22px; margin-left: .1rem;">{{ likes.count }}</div>
+        </button>
+        <button mat-raised-button class="playlist-button" [matMenuTriggerFor]="menu" (click)="onGetLists()" *ngIf="!!user"><mat-icon>add_to_photos</mat-icon></button>
+        <button mat-icon-button class="share-button" (click)="share = !share"><mat-icon>share</mat-icon></button>
+        <div class="socials" *ngIf="share">
+            <button mat-mini-fab (click)="onShare($event, 'http://www.facebook.com/sharer.php?u=')" class="facebook hoverable">
+                f
+            </button>
+            <button mat-mini-fab (click)="onShare($event, 'http://twitter.com/intent/tweet/?url=')" class="twitter hoverable">
+                t
+            </button>
+            <button mat-mini-fab (click)="onShare($event, 'viber://forward?text=')" class="viber hoverable">
+                V
+            </button>
+        </div>
+        <mat-menu #menu="matMenu" class="color1">
+            <button matRipple matRippleColor="red" mat-menu-item *ngFor="let list of lists" (click)="onAddToList(list.pk)"><mat-checkbox [checked]="list.added">{{ list.name }}</mat-checkbox> <mat-icon class="access">{{ list.public ? 'public' : 'lock' }}</mat-icon></button>
+            <button *ngIf="!addList" mat-button style="margin-left: .5rem" color="accent" (click)="$event.stopPropagation(); addList = true">Adaugă o listă</button>
+            <form (submit)="onAddList(addArticleForm)" *ngIf="addList" class="add-list-wrapper" #addArticleForm="ngForm">
+                <hr>
+                <mat-form-field  class="example-full-width" appearance="outline" (click)="$event.stopPropagation()">
+                    <mat-label>Denumirea liste</mat-label>
+                    <input matInput ngModel name="name">
+                </mat-form-field>
+                <button mat-flat-button color="primary" type="submit">Adaugă</button><mat-checkbox (click)="$event.stopPropagation()" name="access" ngModel value="unchecked">Public</mat-checkbox>
+            </form>
+        </mat-menu>
+    </div>
+    <div class="additional-content">
+        <app-comments [info]="{ token: user?.uid, photoURL: user?.photoURL, id: article.id, isStaff : user?.isStaff }"></app-comments>
+        <app-more-articles *ngIf="article.moreArticles" [articles]="article.moreArticles"></app-more-articles>
+    </div>
+</div>
+<div class="main loading" *ngIf="loading">
+    <div class="article">
+        <div class="tag-wrapper">
+            <div class="tag"></div>
+            <div class="tag"></div>
+            <div class="tag"></div>
+            <div class="tag"></div>
+        </div>
+        <h1></h1>
+        <div class="block"></div>
+    </div>
+</div>
+<div class="titles color1 shadow3" *ngIf="titles.length" [class.hidden]="hideTitles" cdkDrag (dblclick)="hideTitles = !hideTitles">
+    <div *ngIf="!hideTitles">
+        <h2 style="margin-bottom: 0;">Cuprins:</h2>    
+        <li *ngFor="let title of titles" (click)='goToTitle(title)'>{{title.content}}</li>
+    </div>
+    <div class="example-handle" style="float: right; cursor: move;" cdkDragHandle>
+        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+        </svg>
+    </div>
+</div>

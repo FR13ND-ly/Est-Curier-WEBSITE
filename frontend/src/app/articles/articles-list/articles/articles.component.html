@@ -1,0 +1,61 @@
+<div class="main" *ngIf="!loading">
+    <div class="articles">
+        <h1 class="articles-header hide-on-mob">Ultimele Noutăți</h1>
+        <a class="article color1 shadow1 hoverable" *ngFor="let article of articleList;" href="articol/{{article.url}}">
+            <div class="article-image" >
+                <img src="{{ article.cover }}">
+            </div>
+            <div class="article-content">
+                <h1 class="article-title">{{ article.title }}</h1>
+                <p class="article-preview-text hide-on-mob">{{ article.text | articlePreview : 35 }}</p>
+                <p class="article-preview-text hide-on-large">{{ article.text | articlePreview : 20 }}</p>
+                <div class="article-details">
+                    <span *ngIf="!article?.hideDate"><mat-icon style="padding-left: 0;">access_time</mat-icon> {{ article?.date }}</span>
+                    <span *ngIf="!article?.hideAuthor" class="hide-on-mob"><mat-icon>contacts</mat-icon> {{ article?.author}}</span>
+                    <span *ngIf="!article?.hideViewsCount"><mat-icon>remove_red_eye</mat-icon> {{ article?.views }}</span>
+                </div>
+            </div>
+        </a>
+        <div class="getMoreArticles" *ngIf="!noMoreArticles">
+            <button class="shadow1" mat-stroked-button color="primary" (click)="onGetMoreArticles()">Încarcă mai multe articole</button>
+        </div>
+    </div>
+    <div class="side hide-on-mob">
+        <div *ngIf="widget.activated" class="widget color1 shadow1 hoverable">
+            <mat-icon>monetization_on</mat-icon>
+            <a href="{{ widget.link }}" class="text-color1">
+                <img src="{{ widget.image }}">
+                <h3>{{ widget.text }}</h3>
+            </a>
+        </div>
+        <img class="api-logo color1 shadow1 hoverable" src="https://estcurier.md/wp-content/uploads/2021/04/api.png">
+        <img class="api-logo color1 shadow1 hoverable" src="https://estcurier.md/wp-content/uploads/2021/04/codul-deontologic.png">
+        <div class="weekly-image color1 shadow1 hoverable" *ngIf="weeklyImg.activated">
+            <div class="weekly-image-details">
+                <h2 class="weekly-image-title">{{ weeklyImg.text }}</h2>
+                <h6>Autor: {{ weeklyImg.author }}</h6>
+            </div>
+            <img src="{{ weeklyImg.image }}">
+            <h2 class="weekly-image-name">Imaginea săptămânii</h2>
+        </div>
+    </div>
+</div>
+<div class="main loading" *ngIf="loading">
+    <div class="articles">
+        <div class="article color1" *ngFor="let article of [1, 2, 3, 4, 5, 6, 7, 8]">
+            <div class="article-image" >
+                <img class="article-image-box">
+            </div>
+            <div class="article-content">
+                <h1></h1>
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+    <div class="side">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="main" (dragover)="$event.preventDefault(); dragging = true" (dragleave)="$event.preventDefault();dragging = false" [class.dragging]="dragging" (drop)="$event.preventDefault(); onUpload($event, true);" (dragenter)="$event.preventDefault()">
+     <div class="add-image-wrapper " *ngIf="!dragging">
+            <h1>Adaugă un fișier</h1>
+            <input type="file" id="upload-file" style="display: none;" (change)="onUpload($event, false)">
+            <button mat-raised-button color="primary" class="upload-img"><label for="upload-file">Încarcă imaginea</label></button>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    </div>
+    <div class="images-wrapper" *ngIf="!dragging">
+        <div class="images color2">
+            <div class="contain">
+                <img src="{{ file.location }}" [class.selected]="selected == i" (click)="selectFile(i)" *ngFor="let file of files; let i = index">
+            </div>
+            <button mat-flat-button color="primary" (click)="onGetMoreFiles()" *ngIf="!noMoreFiles">Încarcă mai multe imagini</button>
+        </div>
+        <button mat-raised-button color="accent" class="continue-button" [mat-dialog-close]="data" cdkFocusInitial [disabled]="selected == -1 || selected > files.length">Continuă</button>
+    </div>
+    <p *ngIf="dragging">Trage pentru a adăuga fișiere</p>
+</div>

@@ -1,0 +1,125 @@
+.main {
+    margin-top: 1%;
+    width: 100%;
+}
+
+.selected-video .youtube-preview-img {
+    border: 5px solid #2196f3!important;
+}
+
+.youtube-videos-wrapper {
+    margin-top: 2%;
+    border-radius: 10px;
+    width: 100%;
+    height: 30.2rem;
+    display: flex;
+    .main-video {
+        width: 70%;
+        height: 27rem;
+        border-radius: 10px;
+        margin-right: 2%;
+    }
+    .youtube-videos-list {
+        border-radius: 10px;
+        width: 30%;
+        height: 27rem;
+        overflow-y: scroll;   
+    }
+    .youtube-video {
+        cursor: pointer;
+        margin: 4% 1% 0 4%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover .youtube-preview-img {
+            filter: brightness(80%);
+        }
+        .youtube-preview-img {
+            width: 100%;
+            border-radius: 10px;
+            height: 150px;
+            object-fit: cover; 
+            overflow: hidden;
+            filter: brightness(70%);
+            border: 5px solid #9e9e9e
+        }
+        .youtube-video-title {
+            color: #fff;
+            text-align: center;
+            position: absolute;
+            z-index: 1;
+            font-size: 1.1rem;
+            width: 80%;
+            padding: 3%;
+            background-color: rgba(8, 110, 189, 0.5);
+            line-height: normal;
+        }
+    }
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #2196f3;
+    &:hover {
+      background-color: #1e88e5;
+    }
+    &:active {
+      background-color: #1976d2;
+    }
+}
+
+.loading {
+    .video-box {
+        width: 70%;
+        height: 27rem;
+        background-color: #ccc;
+        border-radius: 10px;
+        margin-right: 2%;
+        animation: loading 1.4s infinite;
+    }
+
+    .youtube-video {
+        background-color: #ccc;
+        border-radius: 10px;
+        height: 150px;
+        animation: loading 1.4s infinite alternate-reverse;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        margin-top: 1%;
+        width: 100%;
+    }
+
+    .youtube-videos-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        .main-video {
+            width: 100%;
+            height: 12.5rem!important;
+        }
+        .youtube-videos-list {
+            overflow-x: scroll;
+            display: flex;
+            width: 100%;
+            margin-top: 2%;
+            height: 135px!important;
+        }
+        .youtube-video {
+            margin: 3% 1% 0 2%!important;
+            width: 10rem!important;
+            height: 100px!important;
+            .youtube-video-title {
+                font-size: 12px;
+            }
+            .youtube-preview-img {
+                width: 100rem;
+                height: 100px;
+            }
+        }
+       
+    }
+}
