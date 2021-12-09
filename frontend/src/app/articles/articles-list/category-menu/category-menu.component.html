@@ -21,13 +21,15 @@
                 <img class="article-image" src="{{articles[0]?.cover}}">
                 <h1>{{articles[0]?.title}}</h1>
             </a>
+            <a class="article shadow1 color1 hoverable" href="/articol/{{articles[4]?.url}}" *ngIf="!widget.activated">
+                <img class="article-image" src="{{articles[4]?.cover}}">
+                <h1>{{articles[4]?.title}}</h1>
+            </a>
             <a class="article shadow1 color1 hoverable second" href="/articol/{{widget?.link}}" *ngIf="widget.activated">
                 <mat-icon class="monetization">monetization_on</mat-icon>
                 <img class="article-image" src="{{widget?.image}}">
                 <h1>{{widget?.text}}</h1>
             </a>
-            <div class="article" *ngIf="!widget.activated">
-            </div>
         </div>
         <div class="right-side-articles">
             <a class="feature-article article shadow1 color1 shadow1 hoverable" href="/articol/{{articles[1]?.url}}">

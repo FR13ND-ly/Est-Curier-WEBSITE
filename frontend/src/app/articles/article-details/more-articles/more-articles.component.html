@@ -1,4 +1,9 @@
 <div class="main">
+    <a class="avertorial shadow1 color1 hoverable" href="/articol/{{widget?.link}}" *ngIf="widget.activated">
+        <mat-icon class="monetization">monetization_on</mat-icon>
+        <img class="avertorial-image" src="{{widget?.image}}">
+        <h1>{{widget?.text}}</h1>
+    </a>
     <a class="article shadow1" href="/articol/{{article.url}}" *ngFor="let article of articles">
         <p class="article-title">{{article.title}}</p>
         <img class="article-image" src="{{ article.cover }}">

@@ -10,14 +10,6 @@ export class GoogleAdsenseComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit() {
-    let window : any = globalThis.window
-    setTimeout(() => {
-     try {
-        (window["adsbygoogle"] = window["adsbygoogle"] || []).push({});
-      } catch (e) {
-        console.error(e);
-      }
-    }, 2000);
   }
 
 }

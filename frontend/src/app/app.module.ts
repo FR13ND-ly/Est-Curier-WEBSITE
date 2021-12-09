@@ -35,7 +35,6 @@ import { EditImageComponent } from './articles/article-create/edit-image/edit-im
 import { ArticlesModule } from './articles/articles.module';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { PreviewArticleModule } from './preview-article/preview-article.module';
-import { GoogleAdsenseComponent } from './google-adsense/google-adsense.component';
 import { AboutComponent } from './about/about.component';
 
 @NgModule({
@@ -65,7 +64,6 @@ import { AboutComponent } from './about/about.component';
     TextEditorComponent,
     EditImageComponent,
     StatisticsComponent,
-    GoogleAdsenseComponent,
     AboutComponent,
   ],
   imports: [
@@ -79,7 +77,7 @@ import { AboutComponent } from './about/about.component';
     EditorModule,
     ReactiveFormsModule,
     ListsModule,
-    PreviewArticleModule
+    PreviewArticleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "firebase": "^8.8.1",
     "ng-apexcharts": "^1.5.12",
+    "ng2-adsense": "^10.1.0",
     "ngx-echarts": "^7.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",

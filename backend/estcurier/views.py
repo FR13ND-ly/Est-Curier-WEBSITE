@@ -319,7 +319,7 @@ def getTopArticles(request):
             "title" : article.title,
             "cover" : apiUrl + File.objects.get(id = article.cover).file.url
         })
-    for article in articles[6 : 8]:
+    for article in articles[6 : 9]:
         response['secondary'].append({
             "url" : article.url,
             "title" : article.title,
@@ -328,7 +328,7 @@ def getTopArticles(request):
     return JsonResponse(response, safe=False)
 
 def getCategoryArticles(request, tag):
-    articles = Article.objects.filter(tags__contains = tag).filter(draft = False).order_by("-date")[: 4]
+    articles = Article.objects.filter(tags__contains = tag).filter(draft = False).order_by("-date")[: 5]
     response = []
     for article in articles:
         response.append({
