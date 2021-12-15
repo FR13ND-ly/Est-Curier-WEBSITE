@@ -51,7 +51,6 @@ urlpatterns = [
     path('getSurvey/', views.getSurvey),
     path('vote/', views.vote),
     #media
-    path('statisticsByDay/', views.statistics),
     path('getYTvideos/', views.getYTvideos),
     path('updateYTvideos/', views.updateYTvideos),
     path('getFiles/<int:index>/', views.getFiles),

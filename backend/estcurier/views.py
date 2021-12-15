@@ -760,21 +760,3 @@ def uploadFile(request):
         "location" : apiUrl + file.file.url
     }
     return JsonResponse(file.id, safe=False)
-
-def statistics(request):
-    dates = []
-    views = []
-    likes = []
-    comments = []
-    for i in range(int(timezone.now().strftime("%d")), - 1, - 1):
-        dates.append(i)
-        views.append(View.objects.filter(date__date=timezone.now() - timedelta(days = int(timezone.now().strftime("%d")) - i)).reverse().count()) 
-        likes.append(Like.objects.filter(date__date=timezone.now() - timedelta(days = int(timezone.now().strftime("%d")) - i)).reverse().count()) 
-        comments.append(Comment.objects.filter(date__date=timezone.now() - timedelta(days = int(timezone.now().strftime("%d")) - i)).reverse().count())
-    response = {
-        "dates" : dates,
-        "views" : views,
-        "likes" : likes,
-        "comments" : comments
-    }
-    return JsonResponse(response, safe=False)
