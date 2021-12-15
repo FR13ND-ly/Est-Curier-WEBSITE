@@ -24,6 +24,7 @@
         cursor: pointer;
         display: flex;
         align-items: center;
+        transition: background-color .2s;
         &:hover {
             background-color: #fff;
             color: #1e88e5;
@@ -35,7 +36,7 @@
     display: block;
 }
 
-.dropdown {   
+.dropdown {
     background-color: #fff;
     padding: 1% 4.5% 1% 1%;
     border-radius: 15px;
