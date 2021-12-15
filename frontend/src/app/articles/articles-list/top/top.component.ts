@@ -24,7 +24,7 @@ export class TopComponent implements OnInit {
   async ngOnInit() {
     this.loadingService.setLoading(true)
     this.interval = setInterval(() => {
-      this.selectedIndex = this.selectedIndex == 4 ? 0 : ++this.selectedIndex
+      this.selectedIndex = ++this.selectedIndex % 5
     }, 5000)
     let data : any = await this.articleService.getTopArticles()
     this.articlesSlider = data.primary
