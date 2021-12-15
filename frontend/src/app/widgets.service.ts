@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { config } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class WidgetsService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly APIUrl ="http://127.0.0.1:8000/api/"
+  private readonly APIUrl = config.apiUrl
 
   getWidget(id : any) {
     return this.http.get(`${this.APIUrl}getWidget/${id}/`).toPromise()

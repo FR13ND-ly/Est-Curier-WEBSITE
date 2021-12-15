@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { config } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class SurveysService {
 
   constructor(private http: HttpClient) {}
-  readonly APIUrl ="http://127.0.0.1:8000/api/"
+  readonly APIUrl = config.apiUrl
 
   getSurvey(data: any){
     return this.http.post(this.APIUrl + 'getSurvey/', data).toPromise()

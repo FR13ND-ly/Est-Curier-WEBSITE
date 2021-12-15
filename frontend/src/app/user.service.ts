@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { config } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  readonly APIUrl ="http://127.0.0.1:8000/api/"
+  readonly APIUrl = config.apiUrl
 
   user : any = false
   private userUpdated = new Subject<any[]>() 
