@@ -64,6 +64,10 @@ footer {
 
 .change-theme-button {
     right: 2%;
+    transition: transform 1s;
+    &:active {
+        transform: rotate(180deg);
+    }
 }
 
 .search-button {
