@@ -39,6 +39,7 @@ export class ListDetailsComponent implements OnInit {
 
   async onGetList() {
     this.listInfo = await this.listService.getListInfo({id : this.listId, token : this.user.uid})
+    
     if (this.listId > 0){
       if (this.listInfo == "Nu am găsit această listă"){
         this.router.navigate(['/'])

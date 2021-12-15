@@ -14,10 +14,10 @@ export class FileManagerComponent implements OnInit {
   
   files : any = []
   selected : number = -1
-  dragging = false
-  loading = false
-  noMoreFiles = false
-  index: any = 1
+  dragging : boolean = false
+  loading : boolean = false
+  noMoreFiles : boolean = false
+  index: number = 1
 
   async ngOnInit() {
     this.getFiles()
@@ -41,7 +41,7 @@ export class FileManagerComponent implements OnInit {
     this.loading = false
   }
 
-  selectFile(i : any) {
+  selectFile(i : number) {
     if (this.selected == i) {
       this.data.id = -1
       this.data.imageCover = ''

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticlesService } from 'src/app/articles.service';
 import { UserService } from 'src/app/user.service';
 import { Subscription } from 'rxjs'
@@ -8,26 +8,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { FileManagerComponent } from 'src/app/file-manager/file-manager.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadingService } from 'src/app/loading.service';
-
-interface Article {
-  id : any,
-  author : string,
-  title : string,
-  text : string,
-  subtitle : string,
-  draft : boolean,
-  cover : any,
-  coverImg : string,
-  coverDescription : string,
-  disableComments : boolean,
-  hideLikesCount : boolean,
-  hideAuthor : boolean,
-  hideViewsCount : boolean,
-  hideDate : boolean,
-  tags : string[],
-  moreArticles : any,
-  surveys : any,
-}
+import { Article } from 'src/app/models/article';
 
 @Component({
   selector: 'app-article-create',
@@ -35,7 +16,7 @@ interface Article {
   styleUrls: ['./article-create.component.scss']
 })
 
-export class ArticleCreateComponent implements OnInit {
+export class ArticleCreateComponent implements OnInit, OnDestroy {
 
   constructor(private articleService: ArticlesService, private userService : UserService, public sanitizer: DomSanitizer, private router : Router, private route: ActivatedRoute,  private dialog: MatDialog, private _snackBar: MatSnackBar, private loadingService: LoadingService) { }
 
@@ -61,7 +42,6 @@ export class ArticleCreateComponent implements OnInit {
     surveys : [],
   }
   coverImage: any = ''
-  initCoverImage: any = ''
   url:string = ''
   private userSub: Subscription | undefined;
   ngOnInit(): void {
@@ -71,7 +51,6 @@ export class ArticleCreateComponent implements OnInit {
         this.article = <Article>await this.articleService.getArticleToEdit(this.url)
         this.article.moreArticles
         this.coverImage = this.article.coverImg
-        this.initCoverImage = this.coverImage
       }
     });
     this.userSub = this.userService.getUserUpdateListener()
@@ -82,6 +61,11 @@ export class ArticleCreateComponent implements OnInit {
         this.user = user
       })
   }
+
+  ngOnDestroy() {
+    this.userSub?.unsubscribe()
+  }
+
   onDeleteArticle() {
     this.articleService.deleteArticle(this.article.id)
     this.router.navigate(['/'])
@@ -106,7 +90,7 @@ export class ArticleCreateComponent implements OnInit {
     }
     this.loadingService.setLoading(true)
     if (this.url) {
-      await this.articleService.editArticle(JSON.parse(JSON.stringify(this.article)), this.initCoverImage == this.coverImage ? 0 : this.article.cover)
+      await this.articleService.editArticle(JSON.parse(JSON.stringify(this.article)))
       this._snackBar.open("Articolul a fost actualizat", "", {duration: 3000});
     }
     else {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { config } from './config';

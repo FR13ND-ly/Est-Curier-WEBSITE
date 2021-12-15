@@ -8,7 +8,6 @@ import { DraftsComponent } from './articles/drafts/drafts.component';
 import { FilesComponent } from './files/files.component';
 import { ListDetailsComponent } from './lists/list-details/list-details.component';
 import { ListsComponent } from './lists/lists/lists.component';
-import { StatisticsComponent } from './statistics/statistics.component';
 import { WidgetsComponent } from './widgets/widgets.component';
 import { AboutComponent } from './about/about.component'
 
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path: 'fisiere', component: FilesComponent},
   {path: 'ciorne', component: DraftsComponent},
   {path: 'despre-noi', component: AboutComponent},
-  // {path: 'statistică', component: StatisticsComponent},
   {path: '**', component: ArticlesListComponent}
 ];
 

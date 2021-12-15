@@ -8,6 +8,7 @@ import { UserService } from 'src/app/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadingService } from '../loading.service';
 import { Subscription } from 'rxjs';
+import { Widget } from '../models/widget';
 
 @Component({
   selector: 'app-widgets',
@@ -18,7 +19,7 @@ export class WidgetsComponent implements OnInit, OnDestroy {
 
   constructor(private widgetService : WidgetsService, private dialog: MatDialog, private youtubeService : YoutubeService, private userService : UserService, private router : Router, private _snackBar: MatSnackBar, private loadingService : LoadingService) {}
 
-  widgets : any = []
+  widgets : Widget[] | undefined
 
   private widgetsSub: Subscription | undefined;
 
@@ -28,7 +29,7 @@ export class WidgetsComponent implements OnInit, OnDestroy {
         if (!user || !user.isStaff){
           this.router.navigate(['/'])
         }
-        this.widgets = await this.widgetService.getWidgets()
+        this.widgets = <Widget[]>await this.widgetService.getWidgets()
       })
     
   }
@@ -37,14 +38,14 @@ export class WidgetsComponent implements OnInit, OnDestroy {
     this.widgetsSub?.unsubscribe()
   }
 
-  onEditWidget(widget: any) {
+  onEditWidget(widget: Widget) {
     this.loadingService.setLoading(true)
     this.widgetService.editWidget(widget)
     this._snackBar.open("Ai actualizat setările widget-ului", "", {duration: 3000});
     this.loadingService.setLoading(false)
   }
 
-  onSetImage(i : any) {
+  onSetImage(i : number) {
     let fileManager = this.dialog.open(FileManagerComponent, {
       autoFocus: true,
       panelClass: 'file-manager',
@@ -55,14 +56,14 @@ export class WidgetsComponent implements OnInit, OnDestroy {
       }
     });
     fileManager.afterClosed().subscribe(result => {
-      this.widgets[i].actualImage = result.actualImage;
-      this.widgets[i].image = result.id
+      this.widgets![i].actualImage = result.actualImage;
+      this.widgets![i].image = result.id
     });
   }
 
   async onUpdateVideos() {
     this.loadingService.setLoading(true)
-    let message: any = await this.youtubeService.updateVideos()
+    let message: string = <string>await this.youtubeService.updateVideos()
     this._snackBar.open(message, "", {duration: 3000});
     this.loadingService.setLoading(false)
   }

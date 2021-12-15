@@ -33,7 +33,6 @@ import { FileManagerComponent } from './file-manager/file-manager.component';
 import { TextEditorComponent } from './articles/article-create/text-editor/text-editor.component';
 import { EditImageComponent } from './articles/article-create/edit-image/edit-image.component'
 import { ArticlesModule } from './articles/articles.module';
-import { StatisticsComponent } from './statistics/statistics.component';
 import { PreviewArticleModule } from './preview-article/preview-article.module';
 import { AboutComponent } from './about/about.component';
 
@@ -63,7 +62,6 @@ import { AboutComponent } from './about/about.component';
     FileManagerComponent,
     TextEditorComponent,
     EditImageComponent,
-    StatisticsComponent,
     AboutComponent,
   ],
   imports: [

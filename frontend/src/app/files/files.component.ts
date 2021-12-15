@@ -13,8 +13,8 @@ export class FilesComponent implements OnInit, OnDestroy {
 
   constructor(private fileService : FileService, private userService : UserService, private router : Router) { }
   files: any = []
-  index = 1
-  noMoreFiles = false
+  index : number = 1
+  noMoreFiles : boolean = false
   loading: boolean = true
   private userSub: Subscription | undefined;
   async ngOnInit() {
@@ -38,7 +38,7 @@ export class FilesComponent implements OnInit, OnDestroy {
     this.loading = false
   }
 
-  async onRemoveFile(id: any) {
+  async onRemoveFile(id: number) {
     await this.fileService.removeFile(id)
     this.files = await this.fileService.getFiles(this.index)
   }

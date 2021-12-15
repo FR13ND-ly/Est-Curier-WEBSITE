@@ -1,27 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdsService } from '../ads.service';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs'
+import { Ad } from '../models/ad';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.scss']
 })
-export class AdsComponent implements OnInit {
+export class AdsComponent implements OnInit, OnDestroy {
 
   constructor(private adService : AdsService, private accountService : UserService) { }
-  
-  ad = {
-    title : '',
-    text : '',
-    contacts : '',
-    apparitions : 1,
-  }
 
-  ads : any = []
+  ads : Ad[] | undefined
 
   user: any = false
+  
   private userSub: Subscription | undefined;
 
   ngOnInit(): void {
@@ -33,28 +29,27 @@ export class AdsComponent implements OnInit {
       }) 
   }
 
-  async onSaveChanges(ad : any) {
+  ngOnDestroy() {
+    this.userSub?.unsubscribe()
+  }
+
+  async onSaveChanges(ad : Ad) {
     await this.adService.editAd(ad)
     ad.edit = false
     this.onGetAds()
   }
 
-  async onAddAd(){
-    await this.adService.addAd(this.ad)
-    this.ad = {
-      title : '',
-      text : '',
-      contacts : '',
-      apparitions : 1,
-    }
+  async onAddAd(ad : NgForm){
+    await this.adService.addAd(ad.value)
+    ad.reset()
     this.onGetAds()
   }
 
   async onGetAds() {
-    this.ads = await this.adService.getAds()
+    this.ads = <Ad[]>await this.adService.getAds()
   }
 
-  async onRemoveAd(id : any) {
+  async onRemoveAd(id : number) {
     await this.adService.removeAd(id)
     this.onGetAds()    
   }

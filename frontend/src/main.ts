@@ -3,7 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-import firebase from 'firebase'
+import firebase from 'firebase/app';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCVAEO0vg3nYGEMfk8ptDcbmYhu1dqAj24",

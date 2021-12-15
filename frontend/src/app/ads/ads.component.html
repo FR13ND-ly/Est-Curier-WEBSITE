@@ -1,30 +1,31 @@
 <div class="main">
     <div class="wrapper">
-        <div class="card shadow1 color1" *ngIf="user?.isStaff">
+        <form class="card shadow1 color1" (submit)="onAddAd(addAdForm)" *ngIf="user?.isStaff" #addAdForm="ngForm">
             <div class="card-content">
                 <mat-form-field appearance="fill" class="title-input">
                     <mat-label>Tip</mat-label>
-                    <input matInput [(ngModel)]="ad.title">
+                    <input matInput ngModel name="title">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Text</mat-label>
-                    <textarea matInput [(ngModel)]="ad.text" style="line-height: normal;"></textarea>
+                    <textarea matInput ngModel name="text" style="line-height: normal;"></textarea>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="title-input">
                     <mat-label>Date de contact</mat-label>
-                    <input matInput [(ngModel)]="ad.contacts">
+                    <input matInput ngModel name="contacts">
                 </mat-form-field>
                 <section>
                     <mat-slider
                         max="20"
                         min="1"
-                        thumbLabel="true"
-                        [(ngModel)]="ad.apparitions">
+                        thumbLabel="true" 
+                        ngModel 
+                        name="apparitions">
                     </mat-slider>
                 </section>
-                <button mat-stroked-button color="accent" (click)="onAddAd()"><mat-icon>add</mat-icon></button>
+                <button mat-stroked-button color="accent" type="submit" ><mat-icon>add</mat-icon></button>
             </div>
-        </div>
+        </form>
         <div class="card shadow1 color1 hoverable" *ngFor="let ad of ads">
             <div class="card-content">
                 <div *ngIf="!ad.edit">
@@ -39,29 +40,29 @@
                 <div *ngIf="ad.edit && user.isStaff">
                     <mat-form-field appearance="fill" class="title-input">
                         <mat-label>Tip</mat-label>
-                        <input matInput [(ngModel)]="ad.title">
+                        <input matInput [(ngModel)]="ad!.title">
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Text</mat-label>
-                        <textarea matInput [(ngModel)]="ad.text" cdkTextareaAutosize style="line-height: normal;"></textarea>
+                        <textarea matInput [(ngModel)]="ad!.text" cdkTextareaAutosize style="line-height: normal;"></textarea>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="title-input">
                         <mat-label>Date de contact</mat-label>
-                        <input matInput [(ngModel)]="ad.contacts">
+                        <input matInput [(ngModel)]="ad!.contacts">
                     </mat-form-field>
                     <section>
                         <mat-slider
                             max="20"
                             min="1"
                             thumbLabel="true"
-                            [(ngModel)]="ad.apparitions">
+                            [(ngModel)]="ad!.apparitions">
                         </mat-slider>
                     </section>
                     <button mat-flat-button color="accent" style="margin-top: 5%;" (click)="onSaveChanges(ad)"><mat-icon>published_with_changes</mat-icon></button>
                 </div>
             </div>
         </div>
-        <div class="card shadow1 color1 hoverable" *ngIf="!ads.length">
+        <div class="card shadow1 color1 hoverable" *ngIf="!ads?.length">
             <div class="card-content">
                 La moment nu este niciun anunț
             </div>

@@ -17,10 +17,10 @@ export class ArticlesService {
       survey.answers =  [].concat.apply([], survey.answers)
     });
     article.moreArticles =  [].concat.apply([], article.moreArticles)
-    return this.http.post(this.APIUrl + 'createArticle/', article).toPromise()
+    // return this.http.post(this.APIUrl + 'createArticle/', article).toPromise()
   }
 
-  editArticle(article: any, cover: any){
+  editArticle(article: any){
     article.tags = article.tags.toString()
     article.surveys.forEach((survey: any) => {
       survey.answers =  [].concat.apply([], survey.answers)
