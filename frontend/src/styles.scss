@@ -40,7 +40,7 @@ $dark-theme: mat.define-dark-theme(
     .header {
         background-color: #37474f !important;
     }
-    .app-frame {
+    .app-frame, blockquote::before {
         background-color: #263238;
     }
     .mat-dialog-container {
@@ -91,7 +91,7 @@ $dark-theme: mat.define-dark-theme(
     .header {
         background-color: #fff;
     }
-    .mat-app-background {
+    .mat-app-background, blockquote::before {
         background-color: #eee !important;
     }
     .action {
@@ -192,12 +192,76 @@ body {
     display: none !important;
 }
 
-@media only screen and (max-width: 600px) {
+$color: #00CC8F;
+blockquote {
+    border-left: 3px solid $color;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-style: italic;
+    line-height: 1.8em;
+    margin: 1.1em 0;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 0;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50px;
+        left: -4px;
+        height: 3em;
+        width: 5px;
+        margin-top: -1em;
+    }
+    &:after {
+        content: '"';
+        position: absolute;
+        top: 58px;
+        left: -0.5em;
+        color: $color;
+        font-family: 'Secular One', sans-serif;
+        font-style: normal;
+        font-size: 6rem;
+        line-height: normal;
+        text-align: center;
+        text-indent: -2px;
+        width: 1em;
+        margin-top: -0.5em;
+    }
+    &.format:before, &.format:after {
+        display: none;
+    }
+    &.book:after {
+        content: "\f12e";
+    }
+    &.podcast:after{
+        content: "\f32d";
+    }
+    &.lyrics:after{
+        content: "\f333";
+    }
+    &.favorite:after{
+        content: "\f384";
+    }
+    cite{
+        display: block;
+        font-size: 0.75em;
+        line-height: 1.8em;
+        margin-top: 1em;
+    }
+}
+@media only screen and (max-width: 601px) {
     .hide-on-mob {
         display: none !important;
     }
     .hide-on-large {
         display: block !important;
+    }
+    blockquote {
+        line-height: 1.5em;
+        margin: 0;
+        padding: 1em 0 1em 1.5em;
+        &:after {
+            font-size: 3rem;
+        }
     }
 }
 
@@ -244,3 +308,5 @@ mat-option {
         opacity: 1;
     }
 }
+
+
