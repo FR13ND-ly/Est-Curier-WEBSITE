@@ -9,6 +9,8 @@ import { Title } from "@angular/platform-browser";
 import { LoadingService } from 'src/app/loading.service';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Meta } from '@angular/platform-browser';  
+import { PreviewArticlePipe } from 'src/app/preview-article/preview-article.pipe';
 
 @Component({
   selector: 'app-article-details',
@@ -17,7 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
-  constructor(private titleService: Title, private articleService: ArticlesService, private domSanitizer: DomSanitizer, private router : Router, private route: ActivatedRoute, private userService: UserService, private listsService: ListsService, private searchService: SearchService, private loadingService : LoadingService, private _snackBar: MatSnackBar) { }
+  constructor(private titleService: Title, private articleService: ArticlesService, private domSanitizer: DomSanitizer, private router : Router, private route: ActivatedRoute, private userService: UserService, private listsService: ListsService, private searchService: SearchService, private loadingService : LoadingService, private _snackBar: MatSnackBar, private metaService: Meta) { }
 
   url: string = ''
   article: any
@@ -56,7 +58,8 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
         this.router.navigate(['/'])
         return
       }
-      this.titleService.setTitle(this.article.title);
+      this.onSetPageTitle(this.article.title)
+      this.onSetMetaTags()
       this.article.text = this.domSanitizer.bypassSecurityTrustHtml(this.article.text)
       this.loading = false
       this.loadingService.setLoading(false)
@@ -69,6 +72,24 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
         })
       }, 0)
     });
+  }
+
+  onSetMetaTags() {
+    let description = this.article.text.replace(/<[^>]+>/gm, '')
+    description = description.split(" ").length < 25 ? description.split(" ").slice(0, 25).join(" ") : description.split(" ").slice(0, 25).join(" ") + '...'
+    this.metaService.updateTag({name: "description", content: description})
+    this.metaService.updateTag({property: "oc:description", content: description})
+    this.metaService.addTag({name: "article:published_time", content: this.article.date})
+    this.metaService.addTag({property: "oc:image", content: this.article.cover})
+    this.metaService.addTag({name: "twitter:label1", content: "Scris de"})
+    this.metaService.addTag({name: "twitter:data1", content: "Est-Curier"})
+    this.metaService.addTag({name: "twitter:description", content: "description"})
+    this.metaService.addTag({name: "twitter:image", content: this.article.cover})
+  }
+
+  onSetPageTitle(data : string) {
+    let title = data.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + " |  Est-Curier";
+    this.titleService.setTitle(title);
   }
 
   ngOnDestroy() {

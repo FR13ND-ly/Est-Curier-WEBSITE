@@ -17,7 +17,7 @@ export class ArticlesService {
       survey.answers =  [].concat.apply([], survey.answers)
     });
     article.moreArticles =  [].concat.apply([], article.moreArticles)
-    // return this.http.post(this.APIUrl + 'createArticle/', article).toPromise()
+    return this.http.post(this.APIUrl + 'createArticle/', article).toPromise()
   }
 
   editArticle(article: any){
