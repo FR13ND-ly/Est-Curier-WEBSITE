@@ -37,7 +37,7 @@
                     <mat-icon>menu</mat-icon>
                 </button>
                 <mat-icon class="sidenav-button header-button hide-on-large" (click)="onOpenAccountNav()">menu</mat-icon>
-                <h1 class="header-title" routerLink="/" [class.awesomeTitle]="awesomeTitle">Est-Curier</h1>
+                <a class="header-title" [class.awesomeTitle]="awesomeTitle" href="/">Est-Curier</a>
                 <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
             </div>
         </header>
