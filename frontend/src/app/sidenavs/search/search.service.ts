@@ -4,63 +4,64 @@ import { HttpClient } from '@angular/common/http';
 import { config } from 'src/app/config';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class SearchService {
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-  
-  readonly APIUrl = config.apiUrl
+    readonly APIUrl = config.apiUrl;
 
-  private open: boolean = false
+    private open: boolean = false;
 
-  private searchNavUpdated = new Subject<boolean>()
+    private searchNavUpdated = new Subject<boolean>();
 
-  searchText: string = ''
-  private searchTextUpdated = new Subject<string>()
+    searchText: string = '';
+    private searchTextUpdated = new Subject<string>();
 
-  articles: any = []
-  articlesUpdated = new Subject<any>()
+    articles: any = [];
+    articlesUpdated = new Subject<any>();
 
-  getSearchSideNavUpdateListener() {
-    return this.searchNavUpdated.asObservable()
-  }
+    getSearchSideNavUpdateListener() {
+        return this.searchNavUpdated.asObservable();
+    }
 
-  getArticlesUpdateListener() {
-    return this.articlesUpdated.asObservable()
-  }
+    getArticlesUpdateListener() {
+        return this.articlesUpdated.asObservable();
+    }
 
-  getSearchTextUpdateListener() {
-    return this.searchTextUpdated.asObservable()
-  }
+    getSearchTextUpdateListener() {
+        return this.searchTextUpdated.asObservable();
+    }
 
-  openSearchNav() {
-    this.open = true
-    this.searchNavUpdated.next(this.open)
-  }
+    openSearchNav() {
+        this.open = true;
+        this.searchNavUpdated.next(this.open);
+    }
 
-  async search(searchText:string) {
-    this.searchText = searchText
-    this.articles = await this.http.post(`${this.APIUrl}search/`, { searchText }).toPromise()
-    this.articlesUpdated.next(this.articles)
-  }
+    async search(searchText: string) {
+        this.searchText = searchText;
+        this.articles = await this.http
+            .post(`${this.APIUrl}search/`, { searchText })
+            .toPromise();
+        this.articlesUpdated.next(this.articles);
+    }
 
-  closeSearchhNav() {
-    this.open = false
-    this.searchNavUpdated.next(this.open)
-    this.changeSearchText('')
-    this.articles = []
-    this.articlesUpdated.next(this.articles)
-  }
+    closeSearchhNav() {
+        this.open = false;
+        this.searchNavUpdated.next(this.open);
+        this.changeSearchText('');
+        this.articles = [];
+        this.articlesUpdated.next(this.articles);
+    }
 
-  changeSearchText(text : string) {
-    this.searchText = text
-    this.searchTextUpdated.next(this.searchText)
-  }
+    changeSearchText(text: string) {
+        this.searchText = text;
+        this.searchTextUpdated.next(this.searchText);
+    }
 
-  searchByTag(tag : any) {
-    this.openSearchNav()
-    this.changeSearchText(tag)
-    this.search(tag)
-  }
+    searchByTag(tag: any) {
+        this.openSearchNav();
+        this.changeSearchText(tag);
+        this.search(tag);
+    }
 }
