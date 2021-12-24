@@ -3,8 +3,8 @@
         <iframe class="main-video shadow1" [src]="selectedVideo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="youtube-videos-list color1 shadow1">
             <div class="youtube-video" [class.selected-video]="selected == i" *ngFor="let video of videos; let i = index" (click)="onSelectVideo(i)">
-                <p class="youtube-video-title">{{ video.title }}</p>
-                <img src="{{ video.image }}" class="youtube-preview-img">
+                <p class="youtube-video__title">{{ video.title }}</p>
+                <img class="youtube-video__preview-img" src="{{ video.image }}">
             </div>
         </div>
     </div>
