@@ -2,13 +2,14 @@
     width: 100%;
     justify-content: space-between;
     display: flex;
-    .info {
-        h1 {
-            line-height: normal;
-            font-size: 3.5rem;
-        }
+}
+
+.info {
+    &__title {
+        line-height: normal;
+        font-size: 3.5rem;
     }
-    .info-social a {
+    &__social a {
         color: #1565c0;
         text-decoration: none;
         &:hover {
@@ -17,7 +18,7 @@
     }
 }
 
-.avertorial-pricing {
+.widgets-pricing {
     border-radius: 10px;
     overflow: hidden;
     margin: 2% 0;
@@ -31,19 +32,15 @@
     table {
         border-collapse: collapse;
         width: 100%;
-        th, td {
+        th,
+        td {
             padding: 12px 15px;
-            
         }
         tbody tr {
             border-bottom: 1px solid #dddddd;
-            &:nth-of-type(even) {
-                
-            }
             &:last-of-type {
                 border-bottom: 2px solid #009879;
             }
-            
         }
     }
 }
@@ -67,10 +64,10 @@
     .map {
         margin-left: 0%;
     }
-    .info h1 {
+    .info__title {
         margin-top: 2%;
         margin-bottom: 1%;
         line-height: normal;
-        font-size: 2rem!important;
+        font-size: 2rem !important;
     }
 }
