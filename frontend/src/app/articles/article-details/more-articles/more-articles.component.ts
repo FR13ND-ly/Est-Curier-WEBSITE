@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WidgetsService } from 'src/app/widgets.service';
+import { WidgetsService } from 'src/app/widgets/widgets.service';
 
 @Component({
   selector: 'app-more-articles',

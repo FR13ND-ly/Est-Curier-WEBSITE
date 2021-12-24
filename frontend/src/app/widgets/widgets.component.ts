@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { WidgetsService } from '../widgets.service';
+import { WidgetsService } from './widgets.service';
 import { MatDialog } from "@angular/material/dialog";
 import { FileManagerComponent } from '../file-manager/file-manager.component';
-import { YoutubeService } from '../youtube.service';
+import { YoutubeService } from './youtube.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

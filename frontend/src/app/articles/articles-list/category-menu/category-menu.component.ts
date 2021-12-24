@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from 'src/app/articles.service';
-import { WidgetsService } from 'src/app/widgets.service';
+import { WidgetsService } from 'src/app/widgets/widgets.service';
 
 @Component({
   selector: 'app-category-menu',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { YoutubeService } from 'src/app/youtube.service';
+import { YoutubeService } from 'src/app/widgets/youtube.service';
 
 @Component({
   selector: 'app-social',
