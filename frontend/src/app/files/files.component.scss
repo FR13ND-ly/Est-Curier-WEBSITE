@@ -1,14 +1,13 @@
-.main {
+.root {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1%;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.load-more-files {
+.load-more-files-button {
     width: 100%;
-    margin: .7%;
+    margin: 0.7%;
 }
 
 .file {
@@ -18,20 +17,20 @@
     overflow: hidden;
     text-align: center;
     position: relative;
-    button {
+    &__remove-button {
         position: absolute;
         z-index: 1;
         right: 2%;
         top: 3%;
     }
-    img {
+    &__image {
         width: 100%;
         height: 10rem;
         overflow: hidden;
         object-fit: cover;
     }
-    p {
-        padding: 2%; 
+    &__name {
+        padding: 2%;
     }
 }
 

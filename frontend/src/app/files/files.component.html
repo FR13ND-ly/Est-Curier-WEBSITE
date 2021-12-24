@@ -1,13 +1,33 @@
-<div class="main" *ngIf="!loading">
+<div class="root" *ngIf="!loading">
     <div class="file color1 shadow1" *ngFor="let file of files">
-        <button mat-flat-button color="warn" (click)="onRemoveFile(file.id)">Șterge</button>
-        <img src="{{ file.location }}">
-        <p>{{ file.name.slice(0, 20) }}</p>
+        <button
+            class="file__remove-button"
+            mat-flat-button
+            color="warn"
+            (click)="onRemoveFile(file.id)"
+        >
+            Șterge
+        </button>
+        <img class="file__image" src="{{ file.location }}" />
+        <p class="file__name">{{ file.name.slice(0, 20) }}</p>
     </div>
-    <button class="load-more-files" color="primary" (click)="onGetMoreFiles()" *ngIf="!noMoreFiles" mat-flat-button>Încarcă mai multe imagini</button>
+    <button
+        class="load-more-files-button"
+        color="primary"
+        (click)="onGetMoreFiles()"
+        *ngIf="!noMoreFiles"
+        mat-flat-button
+    >
+        Încarcă mai multe imagini
+    </button>
 </div>
 <div class="loading main" *ngIf="loading">
-    <div class="file color1" *ngFor="let file of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]">
+    <div
+        class="file color1"
+        *ngFor="
+            let file of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        "
+    >
         <div class="block"></div>
         <h1></h1>
     </div>
