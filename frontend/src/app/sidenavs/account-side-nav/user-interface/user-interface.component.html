@@ -1,44 +1,34 @@
 <div *ngIf="!loading">
-    <div class="user-details-view">    
-        <div class="user-details">
-            <img src="{{ user.photoURL }}" class="user-photo">
-            <h1 class="user-name">{{user.displayName}}</h1>
-            <b class="user-status">{{user.isStaff? 'Administrator' : 'Utilizator'}}</b>
-        </div>
-        <img src="https://wallpaperaccess.com/full/690185.jpg" class="background-image">
+    <div class="user-details">
+        <img src="{{ user.photoURL }}" class="user-details__photo">
+        <h1 class="user-details__name">{{user.displayName}}</h1>
+        <b class="user-details__status">{{user.isStaff? 'Administrator' : 'Utilizator'}}</b>
     </div>
-    <div class="user-actions-view">
-        <a class="action text-color1 hide-on-mob" href="creeaza-articol" *ngIf="user.isStaff">
-            <mat-icon style="float: left;" class="mat-icon-rtl-mirror">edit</mat-icon>Adaugă articol
-        </a>
-        <a class="action text-color1 hide-on-mob" *ngIf="user.isStaff" href="ciorne">
-            <mat-icon style="float: left;" class="mat-icon-rtl-mirror">edit_notifications</mat-icon><span matBadge="{{ fastInfo.drafts }}" matBadgeOverlap="false">Ciornă</span>
-        </a>
-        <a class="action text-color1 hide-on-mob" href="widget-uri" *ngIf="user.isStaff">
-            <mat-icon style="float: left;">widgets</mat-icon>Widget-uri
-        </a>
-        <a class="action text-color1" *ngIf="user.isStaff" href="fisiere">
-            <mat-icon style="float: left;">collections</mat-icon>Fișiere
-        </a>
-        <!-- <a class="action text-color1" *ngIf="user.isStaff" href="statistică">
-            <mat-icon style="float: left;">analytics</mat-icon>Statistică
-        </a> -->
-        <a class="action text-color1" href="liste">
-            <mat-icon style="float: left;" class="mat-icon-rtl-mirror">library_books</mat-icon>Liste
-        </a>
-        <a class="action text-color1" (click)="onLogout()">
-            <mat-icon style="float: left;" class="mat-icon-rtl-mirror">logout</mat-icon>Ieși din account
-        </a>
-        <a class="action text-color1" (click)="onCloseAccountNav()">
-            <mat-icon style="float: left;" class="mat-icon-rtl-mirror">close</mat-icon>Închide
-        </a>
-        <a class="action text-color1 hide-on-large" (click)="onChangeTheme()">
-            <mat-icon style="float: left;" class="mat-icon-rtl-mirror">{{ isDarkTheme ? 'brightness_5' : 'brightness_4' }}</mat-icon>Schimbă tema
-        </a>
-        <!-- <a class="action text-color1" *ngIf="user.isStaff">
-            <mat-icon style="float: left;">bookmark</mat-icon>Brand Book
-        </a> -->
-    </div>
+    <img src="https://wallpaperaccess.com/full/690185.jpg" class="background-image">
+    <a class="action text-color1 hide-on-mob" href="creeaza-articol" *ngIf="user.isStaff">
+        <mat-icon class="action__icon">edit</mat-icon>Adaugă articol
+    </a>
+    <a class="action text-color1 hide-on-mob" *ngIf="user.isStaff" href="ciorne">
+        <mat-icon class="action__icon">edit_notifications</mat-icon><span matBadge="{{ fastInfo.drafts }}" matBadgeOverlap="false">Ciornă</span>
+    </a>
+    <a class="action text-color1 hide-on-mob" href="widget-uri" *ngIf="user.isStaff">
+        <mat-icon class="action__icon">widgets</mat-icon>Widget-uri
+    </a>
+    <a class="action text-color1" *ngIf="user.isStaff" href="fisiere">
+        <mat-icon class="action__icon">collections</mat-icon>Fișiere
+    </a>
+    <a class="action text-color1" href="liste">
+        <mat-icon class="action__icon">library_books</mat-icon>Liste
+    </a>
+    <a class="action text-color1" (click)="onLogout()">
+        <mat-icon class="action__icon">logout</mat-icon>Ieși din account
+    </a>
+    <a class="action text-color1" (click)="onCloseAccountNav()">
+        <mat-icon class="action__icon">close</mat-icon>Închide
+    </a>
+    <a class="action text-color1 hide-on-large" (click)="onChangeTheme()">
+        <mat-icon class="action__icon">{{ isDarkTheme ? 'brightness_5' : 'brightness_4' }}</mat-icon>Schimbă tema
+    </a>
 </div>
 <div *ngIf="loading" class="loading">
     <div class="user-details-view">    
