@@ -1,23 +1,43 @@
 <div class="main" *ngIf="!loading">
     <div class="slider shadow1">
-        <div class="slider-select-buttons">
-            <div class="select-button" *ngFor="let i of [0, 1, 2, 3, 4]"  (click)="refreshInterval(); selectedIndex = i" [class.selected]="selectedIndex == i"></div>
+        <div class="slider__switch-buttons">
+            <div
+                class="slider__switch-button"
+                *ngFor="let i of [0, 1, 2, 3, 4]"
+                (click)="refreshInterval(); selectedIndex = i"
+                [class.selected]="selectedIndex == i"
+            ></div>
         </div>
-        <a href="/articol/{{articlesSlider[selectedIndex].url}}">
-            <div class="slider-darker"></div>
-            <span class="slider-title">{{articlesSlider[selectedIndex].title}}</span> 
-            <img src="{{articlesSlider[selectedIndex].cover}}" class="slider-image">
+        <a href="/articol/{{ articlesSlider[selectedIndex].url }}">
+            <div class="slider__gradient-dark"></div>
+            <span class="slider__title">{{
+                articlesSlider[selectedIndex].title
+            }}</span>
+            <img
+                class="slider__image"
+                src="{{ articlesSlider[selectedIndex].cover }}"
+            />
         </a>
     </div>
-    <div class="top-articles-wrapper">
-        <a class="article shadow1" *ngFor="let article of sideArticles; let i = index" style="animation-delay: calc({{ i * 0.1 }}s)" href="/articol/{{article.url}}">
-            <span class="article-text" >{{ article.title }}</span>
-            <img [src]="article.cover" class="article-image">
+    <div class="articles-wrapper">
+        <a
+            class="article shadow1"
+            *ngFor="let article of sideArticles; let i = index"
+            [style.animation-delay.s]="0.1 * i"
+            href="/articol/{{ article.url }}"
+        >
+            <span class="article__text">{{ article.title }}</span>
+            <img class="article__image" [src]="article.cover" />
         </a>
-        <a class="article shadow1" href="{{ widget1.link }}" *ngIf="widget1?.activated" style="animation-delay: .2s;">
-            <mat-icon class="monetization">monetization_on</mat-icon>
-            <span class="article-text">{{ widget1.text }}</span>
-            <img src="{{ widget1.image }}" class="article-image">
+        <a
+            class="article shadow1"
+            href="{{ widget1.link }}"
+            *ngIf="widget1?.activated"
+            style="animation-delay: 0.2s"
+        >
+            <mat-icon class="article__monetization">monetization_on</mat-icon>
+            <span class="article__text">{{ widget1.text }}</span>
+            <img class="article__image" src="{{ widget1.image }}" />
         </a>
     </div>
 </div>
@@ -32,5 +52,7 @@
     </div>
 </div>
 <div class="shadow1 live" href="widget2.link" *ngIf="widget2?.activated">
-    <a [href]="widget2.link" *ngFor="let i of [1, 2, 3, 4, 5]" >#Live // {{ widget2.text }}</a>
+    <a [href]="widget2.link" *ngFor="let i of [1, 2, 3, 4, 5]"
+        >#Live // {{ widget2.text }}</a
+    >
 </div>

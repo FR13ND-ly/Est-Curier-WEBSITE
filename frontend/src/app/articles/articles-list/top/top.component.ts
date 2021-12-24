@@ -4,43 +4,49 @@ import { LoadingService } from 'src/app/loading.service';
 import { WidgetsService } from 'src/app/widgets/widgets.service';
 
 @Component({
-  selector: 'app-top',
-  templateUrl: './top.component.html',
-  styleUrls: ['./top.component.scss']
+    selector: 'app-top',
+    templateUrl: './top.component.html',
+    styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
+    constructor(
+        private articleService: ArticlesService,
+        private widgetService: WidgetsService,
+        private loadingService: LoadingService
+    ) {}
 
-  constructor(private articleService : ArticlesService, private widgetService: WidgetsService, private loadingService: LoadingService) { }
+    articlesSlider: any = [];
 
-  articlesSlider : any = []
+    sideArticles: any = [];
+    widget1: any;
+    widget2: any;
+    selectedIndex = 0;
+    interval: any;
+    loading: boolean = true;
 
-  sideArticles : any = []
-  widget1 : any
-  widget2 : any
-  selectedIndex = 0;
-  interval : any
-  loading: boolean = true
+    async ngOnInit() {
+        this.loadingService.setLoading(true);
+        this.interval = setInterval(() => {
+            this.selectedIndex = ++this.selectedIndex % 5;
+        }, 5000);
+        let data: any = await this.articleService.getTopArticles();
+        this.articlesSlider = data.primary;
 
-  async ngOnInit() {
-    this.loadingService.setLoading(true)
-    this.interval = setInterval(() => {
-      this.selectedIndex = ++this.selectedIndex % 5
-    }, 5000)
-    let data : any = await this.articleService.getTopArticles()
-    this.articlesSlider = data.primary
-    
-    this.widget1 = await this.widgetService.getWidget(1)
-    this.widget2 = await this.widgetService.getWidget(5)
-    this.sideArticles = data.secondary.slice(0, 2 + Number(!this.widget1?.activated))
-    this.loading = false
-    this.loadingService.setLoading(false)
-  }
+        this.widget1 = await this.widgetService.getWidget(1);
+        this.widget2 = await this.widgetService.getWidget(5);
+        this.sideArticles = data.secondary.slice(
+            0,
+            2 + Number(!this.widget1?.activated)
+        );
+        this.loading = false;
+        this.loadingService.setLoading(false);
+    }
 
-  refreshInterval() {
-    clearInterval(this.interval)
-    this.interval = setInterval(() => {
-      this.selectedIndex = this.selectedIndex == 4 ? 0 : ++this.selectedIndex
-    }, 5000)
-  }
-
+    refreshInterval() {
+        clearInterval(this.interval);
+        this.interval = setInterval(() => {
+            this.selectedIndex =
+                this.selectedIndex == 4 ? 0 : ++this.selectedIndex;
+        }, 5000);
+    }
 }
