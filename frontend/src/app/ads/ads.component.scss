@@ -1,11 +1,7 @@
-.wrapper {
+.root {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1.5%;
-}
-
-mat-slider {
-    width: 100%;
 }
 
 .card {
@@ -14,21 +10,25 @@ mat-slider {
     border-radius: 10px;
     align-self: start;
     height: fit-content;
-    .card-content {
+    &__content {
         padding: 5%;
-        .title {
-            font-size: 1.2rem;
-            line-height: normal;
-        }
+    }
+    &__title {
+        font-size: 1.2rem;
+        line-height: normal;
+    }
+    &__input,
+    &__apparitions-slider {
+        width: 100%;
+    }
+    &__edit-button {
+        margin-right: 2%;
+        margin-top: 5%;
     }
 }
 
-mat-form-field {
-    width: 100%;
-}
-
 @media only screen and (max-width: 600px) {
-    .wrapper {
+    .root {
         grid-template-columns: 1fr;
     }
 }
