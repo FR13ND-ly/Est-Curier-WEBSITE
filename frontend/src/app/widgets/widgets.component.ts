@@ -31,7 +31,6 @@ export class WidgetsComponent implements OnInit, OnDestroy {
         }
         this.widgets = <Widget[]>await this.widgetService.getWidgets()
       })
-    
   }
 
   ngOnDestroy() {
