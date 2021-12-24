@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ListsService } from 'src/app/lists.service';
+import { ListsService } from 'src/app/lists/lists.service';
 import { UserService } from 'src/app/user.service';
 import { first } from 'rxjs/operators'
 import { LoadingService } from 'src/app/loading.service';

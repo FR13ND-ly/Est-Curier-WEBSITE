@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticlesService } from 'src/app/articles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/user.service';
-import { ListsService } from 'src/app/lists.service';
+import { ListsService } from 'src/app/lists/lists.service';
 import { SearchService } from 'src/app/sidenavs/search/search.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Title } from "@angular/platform-browser";
