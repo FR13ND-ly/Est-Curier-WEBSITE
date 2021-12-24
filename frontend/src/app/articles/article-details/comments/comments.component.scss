@@ -1,64 +1,56 @@
-.main {
+.comments-count {
+    margin-top: 1rem;
 }
 
 .add-comment {
     display: flex;
-    &-user-photo {
+    &__user-photo {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
     }
-}
-
-.add-comment-input {
-    width: 100%;
-    margin-top: -1.5rem;
-}
-
-.add-comment-button {
-    float: right; 
-    margin-top: -.7rem;
+    &__input {
+        width: 100%;
+        margin-top: -1.5rem;
+    }
+    &__button {
+        float: right;
+        margin-top: -0.7rem;
+    }
 }
 
 .comments {
     margin-top: 2rem;
 }
 
-.comments-count {
-    margin-top: 1rem;
-}
-
-.comment-delete {
-    right: 0;
-    display: none;
-    position: absolute;
-}
-
 .comment {
     margin-top: 1.2rem;
     display: flex;
     position: relative;
-    animation: commentAppear .5s;
-    &:hover {
-        .comment-delete{
-            display: block;
-        }
-    }
-    &-user-photo {
+    animation: commentAppear 0.5s;
+    &__user-photo {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
     }
-    &-user-name {
+    &__user-name {
         font-weight: 500;
-        margin-bottom: .2rem;
+        margin-bottom: 0.2rem;
     }
-    &-date {
-        margin-left: .5rem;
+    &__date {
+        margin-left: 0.5rem;
         font-size: 10px;
         font-weight: normal;
+    }
+    &__delete-button {
+        right: 0;
+        display: none;
+        position: absolute;
+    }
+    &:hover &__delete-button {
+        display: block;
     }
 }
 
@@ -73,7 +65,7 @@
     h3 {
         margin-top: -3%;
         line-height: normal;
-        font-size: .8rem;
+        font-size: 0.8rem;
         margin-bottom: -5%;
     }
 }
