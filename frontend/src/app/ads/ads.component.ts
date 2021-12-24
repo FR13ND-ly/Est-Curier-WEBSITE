@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AdsService } from '../ads.service';
+import { AdsService } from './ads.service';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs';
 import { Ad } from '../models/ad';
