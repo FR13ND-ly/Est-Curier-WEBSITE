@@ -1,97 +1,192 @@
-<button class="refresh-yt-video" mat-raised-button (click)="onUpdateVideos()">Actualizează video-urile de pe YouTube</button>
+<button class="refresh-yt-video" mat-raised-button (click)="onUpdateVideos()">
+    Actualizează video-urile de pe YouTube
+</button>
 <div class="widget shadow1" *ngIf="widgets![0]">
     <div class="widget__image-wrapper">
-        <p class="widget__text">{{widgets![0]?.text}}</p>
-        <img class="widget__image" src="{{ widgets![0]?.actualImage }}" [class.unactivated]="!widgets![0]?.activated">
+        <p class="widget__text">{{ widgets![0]?.text }}</p>
+        <img
+            class="widget__image"
+            src="{{ widgets![0]?.actualImage }}"
+            [class.unactivated]="!widgets![0]?.activated"
+        />
     </div>
-    <div class="widget__info-wrapper color1" >
+    <div class="widget__info-wrapper color1">
         <h1>Bloc Publicitar #1</h1>
         <mat-form-field class="widget__input">
             <mat-label>Text Reclamă</mat-label>
-            <input matInput [(ngModel)]="widgets![0].text" >
+            <input matInput [(ngModel)]="widgets![0].text" />
         </mat-form-field>
         <mat-form-field class="widget__input">
             <mat-label>Link</mat-label>
-            <input matInput [(ngModel)]="widgets![0].link">
+            <input matInput [(ngModel)]="widgets![0].link" />
         </mat-form-field>
-        <button mat-raised-button color="primary" class="widget__file-input" (click)="onSetImage(0)">Încarcă imaginea</button>
-        <button mat-stroked-button color="accent" class="widget__save-button" (click)="onEditWidget(widgets![0])">Salvează</button>
-        <mat-slide-toggle class="widget__activator" [(ngModel)]="widgets![0].activated">Activează</mat-slide-toggle>
+        <button
+            mat-raised-button
+            color="primary"
+            class="widget__file-input"
+            (click)="onSetImage(0)"
+        >
+            Încarcă imaginea
+        </button>
+        <button
+            mat-stroked-button
+            color="accent"
+            class="widget__save-button"
+            (click)="onEditWidget(widgets![0])"
+        >
+            Salvează
+        </button>
+        <mat-slide-toggle
+            class="widget__activator"
+            [(ngModel)]="widgets![0].activated"
+            >Activează</mat-slide-toggle
+        >
     </div>
 </div>
 
-
 <div class="widget shadow1" *ngIf="widgets![1]">
     <mat-card class="color1">
-        <img mat-card-image src="{{ widgets![1]?.actualImage }}" [class.unactivated]="!widgets![1]?.activated">
+        <img
+            mat-card-image
+            src="{{ widgets![1]?.actualImage }}"
+            [class.unactivated]="!widgets![1]?.activated"
+        />
         <mat-card-content>
-            {{widgets![1]?.text}}
+            {{ widgets![1]?.text }}
         </mat-card-content>
     </mat-card>
     <div class="widget__info-wrapper color1">
         <h1>Bloc Publicitar #2</h1>
         <mat-form-field class="widget__input">
             <mat-label>Text Reclamă</mat-label>
-            <input matInput [(ngModel)]="widgets![1].text">
+            <input matInput [(ngModel)]="widgets![1].text" />
         </mat-form-field>
         <mat-form-field class="widget__input">
             <mat-label>Link</mat-label>
-            <input matInput [(ngModel)]="widgets![1].link">
+            <input matInput [(ngModel)]="widgets![1].link" />
         </mat-form-field>
-        <button mat-raised-button color="primary" class="widget__file-input" (click)="onSetImage(1)">Încarcă imaginea</button>
-        <button mat-stroked-button color="accent" class="widget__save-button" (click)="onEditWidget(widgets![1])">Salvează</button>
-        <mat-slide-toggle class="widget__activator" [(ngModel)]="widgets![1].activated">Activează</mat-slide-toggle>
+        <button
+            mat-raised-button
+            color="primary"
+            class="widget__file-input"
+            (click)="onSetImage(1)"
+        >
+            Încarcă imaginea
+        </button>
+        <button
+            mat-stroked-button
+            color="accent"
+            class="widget__save-button"
+            (click)="onEditWidget(widgets![1])"
+        >
+            Salvează
+        </button>
+        <mat-slide-toggle
+            class="widget__activator"
+            [(ngModel)]="widgets![1].activated"
+            >Activează</mat-slide-toggle
+        >
     </div>
 </div>
 
 <div class="widget shadow1" *ngIf="widgets![2]">
     <mat-card class="color1">
-        <img mat-card-image src="{{ widgets![2]?.actualImage }}" [class.unactivated]="!widgets![2]?.activated">
+        <img
+            mat-card-image
+            src="{{ widgets![2]?.actualImage }}"
+            [class.unactivated]="!widgets![2]?.activated"
+        />
         <mat-card-content>
-            {{widgets![2]?.text}}
+            {{ widgets![2]?.text }}
         </mat-card-content>
     </mat-card>
     <div class="widget__info-wrapper color1">
         <h1>Bloc Publicitar #3</h1>
         <mat-form-field class="widget__input">
             <mat-label>Text Reclamă</mat-label>
-            <input matInput [(ngModel)]="widgets![2].text">
+            <input matInput [(ngModel)]="widgets![2].text" />
         </mat-form-field>
         <mat-form-field class="widget__input">
             <mat-label>Link</mat-label>
-            <input matInput [(ngModel)]="widgets![2].link">
+            <input matInput [(ngModel)]="widgets![2].link" />
         </mat-form-field>
-        <button mat-raised-button color="primary" class="widget__file-input" (click)="onSetImage(2)">Încarcă imaginea</button>
-        <button mat-stroked-button color="accent" class="widget__save-button" (click)="onEditWidget(widgets![2])">Salvează</button>
-        <mat-slide-toggle class="widget__activator" [(ngModel)]="widgets![2].activated">Activează</mat-slide-toggle>
+        <button
+            mat-raised-button
+            color="primary"
+            class="widget__file-input"
+            (click)="onSetImage(2)"
+        >
+            Încarcă imaginea
+        </button>
+        <button
+            mat-stroked-button
+            color="accent"
+            class="widget__save-button"
+            (click)="onEditWidget(widgets![2])"
+        >
+            Salvează
+        </button>
+        <mat-slide-toggle
+            class="widget__activator"
+            [(ngModel)]="widgets![2].activated"
+            >Activează</mat-slide-toggle
+        >
     </div>
 </div>
 
-
 <div class="widget shadow1" *ngIf="widgets![3]">
     <mat-card class="color1">
-        <mat-card-header *ngIf="widgets![3]?.author!.trim().length > 0 || widgets![3]?.text!.trim().length > 0">
+        <mat-card-header
+            *ngIf="
+                widgets![3]?.author!.trim().length > 0 ||
+                widgets![3]?.text!.trim().length > 0
+            "
+        >
             <mat-card-title>{{ widgets![3].text }}</mat-card-title>
-            <mat-card-subtitle><span *ngIf="widgets![3]?.author.trim().length > 0">Autor: </span>{{ widgets![3]?.author }}</mat-card-subtitle>
-        </mat-card-header>            
-        <img mat-card-image src="{{ widgets![3]?.actualImage }}" [class.unactivated]="!widgets![3]?.activated">
-        <mat-card-content>
-            Imaginea Săptămânii
-        </mat-card-content>
+            <mat-card-subtitle
+                ><span *ngIf="widgets![3]?.author.trim().length > 0"
+                    >Autor: </span
+                >{{ widgets![3]?.author }}</mat-card-subtitle
+            >
+        </mat-card-header>
+        <img
+            mat-card-image
+            src="{{ widgets![3]?.actualImage }}"
+            [class.unactivated]="!widgets![3]?.activated"
+        />
+        <mat-card-content> Imaginea Săptămânii </mat-card-content>
     </mat-card>
     <div class="widget__info-wrapper color1">
         <h1>Imaginea Săptămânii</h1>
         <mat-form-field class="widget__input">
             <mat-label>Descriere</mat-label>
-            <input matInput [(ngModel)]="widgets![3].text">
+            <input matInput [(ngModel)]="widgets![3].text" />
         </mat-form-field>
         <mat-form-field class="widget__input">
             <mat-label>Autor</mat-label>
-            <input matInput [(ngModel)]="widgets![3].author">
+            <input matInput [(ngModel)]="widgets![3].author" />
         </mat-form-field>
-        <button mat-raised-button color="primary" class="widget__file-input" (click)="onSetImage(3)">Încarcă imaginea</button>
-        <button mat-stroked-button color="accent" class="widget__save-button" (click)="onEditWidget(widgets![3])">Salvează</button>
-        <mat-slide-toggle class="widget__activator" [(ngModel)]="widgets![3].activated">Activează</mat-slide-toggle>
+        <button
+            mat-raised-button
+            color="primary"
+            class="widget__file-input"
+            (click)="onSetImage(3)"
+        >
+            Încarcă imaginea
+        </button>
+        <button
+            mat-stroked-button
+            color="accent"
+            class="widget__save-button"
+            (click)="onEditWidget(widgets![3])"
+        >
+            Salvează
+        </button>
+        <mat-slide-toggle
+            class="widget__activator"
+            [(ngModel)]="widgets![3].activated"
+            >Activează</mat-slide-toggle
+        >
     </div>
 </div>
 <div class="live color1 shadow1" *ngIf="widgets![4]">
@@ -99,13 +194,23 @@
     <div class="live__fields">
         <mat-form-field appearance="outline" class="live__input">
             <mat-label>Denumire</mat-label>
-            <input matInput [(ngModel)]="widgets![4].text">
+            <input matInput [(ngModel)]="widgets![4].text" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="live__input">
             <mat-label>Link</mat-label>
-            <input matInput [(ngModel)]="widgets![4].link">
+            <input matInput [(ngModel)]="widgets![4].link" />
         </mat-form-field>
     </div>
-    <button mat-stroked-button color="accent" (click)="onEditWidget(widgets![4])">Salvează</button>
-    <mat-slide-toggle class="live__activator" [(ngModel)]="widgets![4].activated">Activează</mat-slide-toggle>
+    <button
+        mat-stroked-button
+        color="accent"
+        (click)="onEditWidget(widgets![4])"
+    >
+        Salvează
+    </button>
+    <mat-slide-toggle
+        class="live__activator"
+        [(ngModel)]="widgets![4].activated"
+        >Activează</mat-slide-toggle
+    >
 </div>

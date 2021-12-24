@@ -39,11 +39,11 @@
     &__image {
         height: 100%;
         width: 100%;
-        object-fit: cover; 
+        object-fit: cover;
         overflow: hidden;
         filter: brightness(70%);
     }
-    
+
     &__info-wrapper {
         padding-top: 5%;
         padding-left: 5%;
@@ -61,8 +61,6 @@
         margin-left: 3%;
     }
 }
-
-
 
 .refresh-yt-video {
     width: 100%;

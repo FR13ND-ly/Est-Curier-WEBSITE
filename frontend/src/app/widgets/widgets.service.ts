@@ -3,23 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { config } from '../config';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class WidgetsService {
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+    private readonly APIUrl = config.apiUrl;
 
-  private readonly APIUrl = config.apiUrl
+    getWidget(id: any) {
+        return this.http.get(`${this.APIUrl}getWidget/${id}/`).toPromise();
+    }
 
-  getWidget(id : any) {
-    return this.http.get(`${this.APIUrl}getWidget/${id}/`).toPromise()
-  }
+    getWidgets() {
+        return this.http.get(`${this.APIUrl}getWidgets/`).toPromise();
+    }
 
-  getWidgets() {
-    return this.http.get(`${this.APIUrl}getWidgets/`).toPromise()
-  }
-
-  async editWidget(data : any) {
-    await this.http.post(`${this.APIUrl}editWidget/`, data).toPromise()
-  }
+    async editWidget(data: any) {
+        await this.http.post(`${this.APIUrl}editWidget/`, data).toPromise();
+    }
 }
