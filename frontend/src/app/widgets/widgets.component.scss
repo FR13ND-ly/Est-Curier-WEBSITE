@@ -1,71 +1,70 @@
 .live {
     padding: 3%;
     margin-bottom: 5%;
-    .fields {
+    &__fields {
         display: flex;
-        mat-form-field {
-            width: 100%;
-        }
+        justify-content: space-between;
     }
-
+    &__input {
+        width: 49%;
+    }
+    &__activator {
+        margin-left: 1%;
+    }
 }
 
-.avertorial {
+.widget {
     margin-bottom: 5%;
     display: grid;
     grid-template-columns: 50% 50%;
-    .avertorial_img {
+    .unactivated {
+        filter: brightness(10%);
+    }
+    &__image-wrapper {
         position: relative;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        .avertorial-text {
-            width: 80%;
-            text-align: center;
-            z-index: 1;
-            position: absolute;
-            font-size: 2rem;
-            color: #fff;
-            line-height: normal;
-        }
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover; 
-            overflow: hidden;
-            filter: brightness(70%);
-        }
     }
-    .avertorial-info-container {
-        .avertorial-info {
-            margin-top: 5%;
-            margin-left: 5%;
-            mat-form-field {
-                width: 95%;
-            }
-            label {
-                cursor: pointer;
-            }
-            .upload-img {
-                width: 95%;
-            }
-            .save-avertorial {
-                margin-top: 3%;
-            }
-        }
+    &__text {
+        width: 80%;
+        text-align: center;
+        z-index: 1;
+        position: absolute;
+        font-size: 2rem;
+        color: #fff;
+        line-height: normal;
+    }
+    &__image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover; 
+        overflow: hidden;
+        filter: brightness(70%);
+    }
+    
+    &__info-wrapper {
+        padding-top: 5%;
+        padding-left: 5%;
+    }
+    &__input {
+        width: 95%;
+    }
+    &__file-input {
+        width: 95%;
+    }
+    &__save-button {
+        margin-top: 3%;
+    }
+    &__activator {
+        margin-left: 3%;
     }
 }
 
-mat-slide-toggle {
-    margin-left: 3%;
-}
+
 
 .refresh-yt-video {
     width: 100%;
     margin-bottom: 1.5%;
-}
-
-.unactivated {
-    filter: brightness(10%)!important;
 }
