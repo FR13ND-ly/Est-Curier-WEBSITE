@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SurveysService } from 'src/app/surveys.service';
+import { SurveysService } from 'src/app/articles/article-details/survey/surveys.service';
 import { UserService } from 'src/app/user.service';
 
 @Component({
