@@ -1,32 +1,88 @@
-<div class="main" *ngIf="!loading">
-    <div class="info color1 shadow1">
-        <div class="preview">
-            <p>{{ listInfo?.size }} {{ listInfo?.size == 1 ? 'articol' : 'articole'}}</p>
-            <img src="{{ articles[0]?.cover ? articles[0]?.cover : 'https://wallpaperaccess.com/full/690185.jpg' }}">
+<div class="root" *ngIf="!loading">
+    <div class="list-info color1 shadow1">
+        <div class="list-info__preview">
+            <p class="list-info__size">
+                {{ listInfo?.size }}
+                {{ listInfo?.size == 1 ? "articol" : "articole" }}
+            </p>
+            <img
+                class="list-info__cover-image"
+                src="{{
+                    articles[0]?.cover
+                        ? articles[0]?.cover
+                        : 'https://wallpaperaccess.com/full/690185.jpg'
+                }}"
+            />
         </div>
-        <div class="info-content">
+        <div class="list-info__content">
             <div *ngIf="listId > 0 && listInfo.own">
-                <button mat-icon-button (click)="copyLink()" (click)="onChangePublic(listInfo.public)"><mat-icon>{{ listInfo.public ? 'public' : 'lock' }}</mat-icon></button>
-                <button mat-icon-button (click)="copyLink()"><mat-icon>content_copy</mat-icon></button>
-                <button mat-icon-button color="warn" (click)="onRemoveList()"><mat-icon>delete</mat-icon></button>
+                <button
+                    class="list-info__action"
+                    mat-icon-button
+                    (click)="copyLink()"
+                    (click)="onChangePublic(listInfo.public)"
+                >
+                    <mat-icon>{{
+                        listInfo.public ? "public" : "lock"
+                    }}</mat-icon>
+                </button>
+                <button
+                    class="list-info__action"
+                    mat-icon-button
+                    (click)="copyLink()"
+                >
+                    <mat-icon>content_copy</mat-icon>
+                </button>
+                <button
+                    class="list-info__action"
+                    mat-icon-button
+                    color="warn"
+                    (click)="onRemoveList()"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
-            <p>{{ listInfo.author }}</p>
-            <div [attr.contenteditable]="listInfo.own && listId > 0" class="title" (input)="onChangeTitle(name.innerText)" #name>{{ listInfo.name }}</div>
+            <p class="list-info__author">{{ listInfo.author }}</p>
+            <div
+                class="list-info__name"
+                aria-colcount="list-info__name"
+                [attr.contenteditable]="listInfo.own && listId > 0"
+                (input)="onChangeTitle(name.innerText)"
+                #name
+            >
+                {{ listInfo.name }}
+            </div>
         </div>
     </div>
     <div class="articles">
-        <a class="article color1 shadow1 hoverable" *ngFor="let article of articles" href="articol/{{article.url}}">
-            <div class="article-image" >
-                <img src="{{ article.cover }}">
+        <a
+            class="article color1 shadow1 hoverable"
+            *ngFor="let article of articles"
+            href="articol/{{ article.url }}"
+        >
+            <div class="article__image-wrapper">
+                <img class="article__image" src="{{ article.cover }}" />
             </div>
-            <div class="article-content">
-                <p class="article-date hide-on-mob">{{ article.date }}</p>
-                <h1 class="article-title">{{ article.title }}</h1>
-                <p class="article-preview-text hide-on-mob">{{ article.text | articlePreview : 45 }}</p>
-                <p class="article-preview-text hide-on-large">{{ article.text | articlePreview : 20 }}</p>
+            <div class="article__content-wrapper">
+                <p class="article__date hide-on-mob">{{ article.date }}</p>
+                <h1 class="article__title">{{ article.title }}</h1>
+                <p class="article__preview-text hide-on-mob">
+                    {{ article.text | articlePreview: 45 }}
+                </p>
+                <p class="article__preview-text hide-on-large">
+                    {{ article.text | articlePreview: 20 }}
+                </p>
             </div>
         </a>
-        <button mat-raised-button class="more-articles" color="primary" (click)="onGetList()" *ngIf="!noMoreArticles">Afișează mai multe articole</button>
+        <button
+            mat-raised-button
+            class="more-articles-button"
+            color="primary"
+            (click)="onGetList()"
+            *ngIf="!noMoreArticles"
+        >
+            Afișează mai multe articole
+        </button>
     </div>
 </div>
 <div class="main loading" *ngIf="loading">
@@ -43,8 +99,11 @@
         </div>
     </div>
     <div class="articles">
-        <div class="article color1 shadow1 hoverable" *ngFor="let article of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
-            <div class="article-image" >
+        <div
+            class="article color1 shadow1 hoverable"
+            *ngFor="let article of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+        >
+            <div class="article-image">
                 <div class="cover-box"></div>
             </div>
             <div class="article-content">
