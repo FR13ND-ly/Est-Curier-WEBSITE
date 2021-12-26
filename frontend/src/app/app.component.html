@@ -1,4 +1,4 @@
-<div class="app-frame mat-app-background">
+<div class="app-frame">
     <mat-sidenav-container hasBackdrop style="width: 100%; height: 100vh">
         <mat-sidenav
             [(opened)]="opened"
@@ -7,7 +7,7 @@
         >
             <app-account-side-nav></app-account-side-nav>
         </mat-sidenav>
-        <mat-sidenav-container hasBackdrop class="app-frame mat-app-background" style="width: 100vw; overflow: hidden;">
+        <mat-sidenav-container hasBackdrop class="app-frame" style="width: 100vw; overflow: hidden;">
             <mat-sidenav
             [(opened)]="openedSearch"
             mode="over"
@@ -16,44 +16,42 @@
         >
             <app-search></app-search>
         </mat-sidenav>
-        <header>
-            <div class="header" id="header">
-                <button
-                    mat-icon-button
-                    (click)="onChangeTheme()"
-                    class="hide-on-mob change-theme-button header-button"
-                >
-                    <mat-icon>{{ isDarkTheme ? 'brightness_5' : 'brightness_4' }}</mat-icon>
-                </button>
-                <button mat-icon-button class="hide-on-mob search-button header-button" (click)="onOpenSearchNav()">
-                    <mat-icon>search</mat-icon>
-                </button>
-                <mat-icon class="hide-on-large search-button header-button" (click)="onOpenSearchNav()">search</mat-icon>
-                <button
-                    mat-icon-button
-                    class="hide-on-mob sidenav-button header-button"
-                    (click)="onOpenAccountNav()"
-                >
-                    <mat-icon>menu</mat-icon>
-                </button>
-                <mat-icon class="sidenav-button header-button hide-on-large" (click)="onOpenAccountNav()">menu</mat-icon>
-                <a class="header-title" [class.awesomeTitle]="awesomeTitle" href="/">Est-Curier</a>
-                <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-            </div>
+        <header class="header" id="header">
+            <button
+                mat-icon-button
+                (click)="onChangeTheme()"
+                class="header__change-theme-button hide-on-mob"
+            >
+                <mat-icon>{{ isDarkTheme ? 'brightness_5' : 'brightness_4' }}</mat-icon>
+            </button>
+            <button mat-icon-button class="header__search-button hide-on-mob" (click)="onOpenSearchNav()">
+                <mat-icon>search</mat-icon>
+            </button>
+            <mat-icon class="header__search-button hide-on-large " (click)="onOpenSearchNav()">search</mat-icon>
+            <button
+                mat-icon-button
+                class="header__sidenav-button hide-on-mob "
+                (click)="onOpenAccountNav()"
+            >
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-icon class="header__sidenav-button hide-on-large" (click)="onOpenAccountNav()">menu</mat-icon>
+            <a class="header__title" [class.awesomeTitle]="awesomeTitle" href="/">Est-Curier</a>
+            <mat-progress-bar class="header__loading" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         </header>
         <div class="body">
             <main>
                 <router-outlet></router-outlet>
             </main>
-            <footer class="color1 shadow1">
-                <div class="inner-footer">
-                    <h1 class="footer-title">Est Curier</h1>
-                    <p class="footer-text">
+            <footer class="footer color1 shadow1">
+                <div class="footer__inner">
+                    <h1 class="footer__title">Est Curier</h1>
+                    <p class="footer__text">
                         Ziarul cu care stai de vorbă și în care poți avea încredere<br>
-                        <span class="footer-about" routerLink="despre-noi">Despre noi</span>
+                        <span class="footer__about" routerLink="despre-noi">Despre noi</span>
                     </p>
                     
-                    <div class="footer-copyright">
+                    <div class="footer__copyright">
                         © 2022 Est Curier. All Rights Reserved.<br>
                     </div>
                 </div>

@@ -32,6 +32,40 @@ footer {
     z-index: 999999;
     display: flex;
     text-align: center;
+    &__title {
+        text-decoration: none;
+        color: #0288d1;
+        cursor: pointer;
+        font-size: 36px;
+    }
+    &__change-theme-button {
+        right: 2%;
+        transition: transform 1s;
+        &:active {
+            transform: rotate(180deg);
+        }
+    }
+    &__search-button {
+        right: 7%;
+    }
+    &__sidenav-button {
+        left: 2%;
+    }
+    &__loading {
+        position: absolute;
+        bottom: 0;
+    }
+
+    &__change-theme-button, &__search-button, &__sidenav-button {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        mat-icon {
+            font-size: 36px;
+            margin-right: 25%;
+        }
+    }
+    
 }
 
 .fixed {
@@ -45,38 +79,12 @@ footer {
     animation: top2 .15s;
 }
 
-.header-title {
-    text-decoration: none;
-    color: #0288d1;
-    cursor: pointer;
-    font-size: 36px;
-}
 
-.header-button {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    mat-icon {
-        font-size: 36px;
-        margin-right: 25%;
-    }
-}
 
-.change-theme-button {
-    right: 2%;
-    transition: transform 1s;
-    &:active {
-        transform: rotate(180deg);
-    }
-}
 
-.search-button {
-    right: 7%;
-}
 
-.sidenav-button {
-    left: 2%;
-}
+
+
 
 .sidenav {
     width: 25%;
@@ -89,19 +97,19 @@ footer {
     bottom: 0;
     overflow: auto;
     position: relative;
-    .footer-title {
+    &__title {
         margin: 2% 5%;
         line-height: normal;
         font-size: 2rem;
         color: #0288d1;
     }
-    .footer-text {
+    &__text {
         margin: -1% 0 0 5%;
     }
-    .footer-copyright {
+    &__copyright {
         margin: 4% 0 2% 5%;
     }
-    .footer-about {
+    &__about {
         transition: color .1s;
         cursor: pointer;
         &:hover {
@@ -139,10 +147,7 @@ footer {
     }
 }
 
-.mat-progress-bar {
-    position: absolute;
-    bottom: 0;
-}
+
 
 @keyframes top2 {
     from {top: 0%; border-radius: 0 0 15px 15px;}

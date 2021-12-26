@@ -21,44 +21,23 @@ $dark-theme: mat.define-dark-theme(
 
 .dark-theme {
     @include mat.all-component-colors($dark-theme);
-    .color1 {
+    .color1, .sidenav, .header, .mat-dialog-container, .mat-snack-bar-container span {
         background-color: #37474f;
         color: #fff;
     }
-    .color2 {
+    .color2, .hoverable:hover, .action &:hover {
         background-color: #455a64;
     }
     .color3 {
         background-color: #546e7a;
     }
-    .hoverable:hover {
-        background-color: #455a64;
-    }
-    .sidenav {
-        background-color: #37474f !important;
-    }
-    .header {
-        background-color: #37474f !important;
-    }
     .app-frame, blockquote::before {
         background-color: #263238;
-    }
-    .mat-dialog-container {
-        background-color: #37474f;
     }
     .ng-star-inserted {
         color: #fff;
     }
-    .mat-snack-bar-container {
-        span {
-            color: #37474f;
-        }
-    }
-    .action {
-        &:hover {
-            background-color: #455a64;
-        }
-    }
+    
     .hoverable:hover .color1 {
         filter: brightness(120%);
     }
@@ -72,14 +51,11 @@ $dark-theme: mat.define-dark-theme(
 }
 
 .light-theme {
-    @include mat.all-component-themes($light-theme);
-    .article {
+    @include mat.all-component-colors($light-theme);
+    .article, .text-color1 {
         color: #212121;
     }
-    .text-color1 {
-        color: #212121;
-    }
-    .color1 {
+    .color1, .header {
         background-color: #fff;
     }
     .color2 {
@@ -88,16 +64,8 @@ $dark-theme: mat.define-dark-theme(
     .color3 {
         background-color: #e0e0e0;
     }
-    .header {
-        background-color: #fff;
-    }
-    .mat-app-background, blockquote::before {
+    .app-frame, blockquote::before, .action &:hover {
         background-color: #eee !important;
-    }
-    .action {
-        &:hover {
-            background-color: #eeeeee;
-        }
     }
     .inversed-color {
         background-color: #37474f !important;
