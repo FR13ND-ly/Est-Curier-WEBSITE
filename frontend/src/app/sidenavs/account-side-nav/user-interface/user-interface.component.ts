@@ -10,12 +10,12 @@ export class UserInterfaceComponent implements OnInit {
     constructor(private userService: UserService) {}
 
     user: any = false;
-    fastInfo: any;
+    draftsCount: any;
     loading: boolean = true;
     isDarkTheme: boolean = false;
     async ngOnInit() {
         this.isDarkTheme = localStorage.getItem('isDarkTheme') != 'dark-theme';
-        this.fastInfo = await this.userService.getFastInfo();
+        this.draftsCount = await this.userService.getFastInfo();
         this.user = this.userService.getUser();
         this.userService.getUserUpdateListener().subscribe((user: any) => {
             this.user = user;

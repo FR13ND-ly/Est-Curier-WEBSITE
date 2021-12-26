@@ -9,7 +9,7 @@
         <mat-icon class="action__icon">edit</mat-icon>Adaugă articol
     </a>
     <a class="action text-color1 hide-on-mob" *ngIf="user.isStaff" href="ciorne">
-        <mat-icon class="action__icon">edit_notifications</mat-icon><span matBadge="{{ fastInfo.drafts }}" matBadgeOverlap="false">Ciornă</span>
+        <mat-icon class="action__icon">edit_notifications</mat-icon><span matBadge="{{ draftsCount }}" matBadgeOverlap="false">Ciornă</span>
     </a>
     <a class="action text-color1 hide-on-mob" href="widget-uri" *ngIf="user.isStaff">
         <mat-icon class="action__icon">widgets</mat-icon>Widget-uri

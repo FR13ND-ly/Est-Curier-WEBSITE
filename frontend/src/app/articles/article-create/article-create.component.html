@@ -60,7 +60,7 @@
         <div class="more-articles wrapper color1 shadow1">
             <h3>Articole la temă</h3>
             <mat-form-field class="title-input" *ngFor="let bonusArticle of article.moreArticles; let i = index">
-                <input matInput placeholder="{{ i + 1 }}. Articol" [(ngModel)]="article.moreArticles[i][0]">
+                <input matInput placeholder="{{ i + 1 }}. Articol" [(ngModel)]="article.moreArticles[i]">
                 <button matSuffix mat-icon-button>
                     <mat-icon (click)="article.moreArticles.splice(i, 1)">highlight_off</mat-icon>
                 </button>
