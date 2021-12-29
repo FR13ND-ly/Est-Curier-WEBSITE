@@ -22,7 +22,7 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
     weeklyImg: any = {};
     loading: boolean = true;
     articlesLast: any
-    observer = new IntersectionObserver((articles) => {this.observeArticles(articles)});
+    observer = new IntersectionObserver((articles) => {this.observeArticles(articles)}, {threshold: .5});
 
     async ngOnInit() {
         this.onGetArticleList();
