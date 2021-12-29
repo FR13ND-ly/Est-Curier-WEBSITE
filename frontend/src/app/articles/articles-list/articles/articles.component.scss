@@ -157,8 +157,8 @@
 }
 
 .show {
-    opacity: 1!important;
-    animation: tieSlideInUp .5s;
+    opacity: 1;
+    animation: tie-slide-in-up .5s;
 }
 
 @media only screen and (max-width: 600px) {
@@ -200,5 +200,16 @@
         &__details {
             margin-right: 2%;
         }
+    }
+}
+
+@keyframes tie-slide-in-up {
+    from {
+        transform: translate3d(0, 50px, 0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
     }
 }
