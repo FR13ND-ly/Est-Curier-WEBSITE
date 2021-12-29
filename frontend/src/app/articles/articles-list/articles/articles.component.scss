@@ -11,12 +11,12 @@
     }
 }
 .article {
-    animation: tieSlideInUp 0.5s;
     text-decoration: none;
     display: flex;
     border-radius: 10px;
     margin-bottom: 3%;
     overflow: hidden;
+    opacity: 0;
     &__image-wrapper {
         width: 18%;
     }
@@ -67,15 +67,6 @@
     }
     &:hover &__title {
         color: #2196f3;
-    }
-}
-
-.getMoreArticles {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
-    button {
-        width: 100%;
     }
 }
 
@@ -163,6 +154,11 @@
     .side {
         width: 100%;
     }
+}
+
+.show {
+    opacity: 1!important;
+    animation: tieSlideInUp .5s;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ArticlesService } from 'src/app/articles.service';
 import { WidgetsService } from 'src/app/widgets/widgets.service';
 
@@ -7,11 +7,13 @@ import { WidgetsService } from 'src/app/widgets/widgets.service';
     templateUrl: './articles.component.html',
     styleUrls: ['./articles.component.scss'],
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(
         private articleService: ArticlesService,
         private widgetService: WidgetsService
     ) {}
+
+    @ViewChildren('article') articlesRef: any;
 
     articleList: any = [];
     noMoreArticles: any = false;
@@ -19,18 +21,43 @@ export class ArticlesComponent implements OnInit {
     widget: any = {};
     weeklyImg: any = {};
     loading: boolean = true;
+    articlesLast: any
+    observer = new IntersectionObserver((articles: any) => {
+        articles.forEach((article : IntersectionObserverEntry) => {
+            if (article.isIntersecting){
+                if (article.target == this.articlesLast && !this.noMoreArticles) {
+                    this.onGetMoreArticles()
+                }
+                article.target.classList.add("show")
+                this.observer.unobserve(article.target)
+            }
+        }, {treshold: 1});
+    })
+
     async ngOnInit() {
         this.onGetArticleList();
-        this.widget = await this.widgetService.getWidget(3);
-        this.weeklyImg = await this.widgetService.getWidget(4);
         this.loading = false;
+        [this.widget, this.weeklyImg] = await Promise.all([await this.widgetService.getWidget(3),await this.widgetService.getWidget(4)])
+    }
+
+    ngAfterViewInit() {
+        this.articlesRef.changes.subscribe((articles : any) => {
+            this.articlesLast = articles.last.nativeElement
+            articles._results.forEach((article: any) => {
+                this.observer.observe(article.nativeElement)
+            });
+        })
+    }
+
+    ngOnDestroy() {
+        this.observer.disconnect()
     }
 
     async onGetArticleList() {
         let data: any = await this.articleService.getArticleList(this.index);
         this.articleList.push(...data.articles);
         this.noMoreArticles = data.noMoreArticles;
-    }
+    }   
 
     onGetMoreArticles() {
         this.index++;

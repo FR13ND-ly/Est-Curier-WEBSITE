@@ -48,6 +48,9 @@ $dark-theme: mat.define-dark-theme(
         background-color: #fff;
         color: #212121;
     }
+    .action :hover {
+        background-color: #455a64;
+    }
 }
 
 .light-theme {
@@ -74,6 +77,9 @@ $dark-theme: mat.define-dark-theme(
             background-color: #37474f !important;
             color: #fff !important;
         }
+    }
+    .action :hover {
+        background-color: #eeeeee;
     }
 }
 
@@ -268,7 +274,7 @@ mat-option {
 
 @keyframes tieSlideInUp {
     from {
-        transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 50px, 0);
         opacity: 0;
     }
     to {
