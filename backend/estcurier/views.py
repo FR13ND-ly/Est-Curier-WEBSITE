@@ -456,7 +456,7 @@ def addToList(request):
 @csrf_exempt
 def getFullLists(request, pk):
     response = []
-    historic_raw = View.objects.filter(user=pk).order_by('-date')
+    historic_raw = View.objects.filter(user=pk).order_by('date')
     history = {
         "id": 'istoric',
         "name": "Istoric",
@@ -560,9 +560,9 @@ def getListArticles(request):
     }
     articles_raw = []
     if data['id'] == -1:
-        articles_raw = View.objects.filter(user=data['token'])
+        articles_raw = View.objects.filter(user=data['token']).order_by("-date")
     elif data['id'] == -2:
-        articles_raw = Like.objects.filter(user=data['token'])
+        articles_raw = Like.objects.filter(user=data['token']).order_by("-date")
     else:
         articles_raw = ListItem.objects.filter(List=data['id'])
     response["noMoreArticles"] = (
