@@ -1,0 +1,7 @@
+Django==3.2
+django-cors-headers==3.10.1
+djangorestframework==3.13.1
+fitz==0.0.1.dev2
+PyMuPDF==1.19.3
+requests==2.26.0
+virtualenv==20.4.7
