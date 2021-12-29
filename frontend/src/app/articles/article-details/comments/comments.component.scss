@@ -28,7 +28,7 @@
     margin-top: 1.2rem;
     display: flex;
     position: relative;
-    animation: commentAppear 0.5s;
+    opacity: 0;
     &__user-photo {
         width: 40px;
         height: 40px;
@@ -58,6 +58,11 @@
     color: #1565c0;
 }
 
+.show {
+    opacity: 1;
+    animation: tie-slide-in-left .5s;
+}
+
 @media only screen and (max-width: 600px) {
     h1 {
         font-size: 1.2rem;
@@ -70,11 +75,13 @@
     }
 }
 
-@keyframes commentAppear {
+@keyframes tie-slide-in-left {
     0% {
-        transform: translateY(-100%);
+        opacity: 0;
+        transform: translateX(50px);
     }
     100% {
-        transform: translateY(0);
+        opacity: 1;
+        transform: translateX(0);
     }
 }

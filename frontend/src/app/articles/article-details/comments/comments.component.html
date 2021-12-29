@@ -28,7 +28,7 @@
     <div
         class="comment"
         *ngFor="let comment of comments; let i = index"
-        [style.animation-delay.s]="i * 0.02"
+        #comment
     >
         <div class="comment__image-wrapper">
             <img class="comment__user-photo" [src]="comment.photoURL" />
