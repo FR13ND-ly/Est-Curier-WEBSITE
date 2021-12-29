@@ -31,7 +31,7 @@ export class TopComponent implements OnInit {
         }, 5000);
         let data: any = await this.articleService.getTopArticles();
         this.articlesSlider = data.primary;
-
+ 
         this.widget1 = await this.widgetService.getWidget(1);
         this.widget2 = await this.widgetService.getWidget(5);
         this.sideArticles = data.secondary.slice(
