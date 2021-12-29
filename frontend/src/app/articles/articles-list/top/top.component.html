@@ -8,14 +8,14 @@
                 [class.selected]="selectedIndex == i"
             ></div>
         </div>
-        <a href="/articol/{{ articlesSlider[selectedIndex].url }}">
+        <a href="/articol/{{ articlesSlider[selectedIndex]?.url }}">
             <div class="slider__gradient-dark"></div>
             <span class="slider__title">{{
-                articlesSlider[selectedIndex].title
+                articlesSlider[selectedIndex]?.title
             }}</span>
             <img
                 class="slider__image"
-                src="{{ articlesSlider[selectedIndex].cover }}"
+                src="{{ articlesSlider[selectedIndex]?.cover }}"
             />
         </a>
     </div>
