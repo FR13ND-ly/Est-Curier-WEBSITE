@@ -21,7 +21,6 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
     widget: any = {};
     weeklyImg: any = {};
     loading: boolean = true;
-    articlesLast: any
     observer = new IntersectionObserver((articles) => {this.observeArticles(articles)}, {threshold: .5});
 
     async ngOnInit() {
@@ -32,7 +31,6 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit() {
         this.articlesRef.changes.subscribe((articles : any) => {
-            this.articlesLast = articles.last.nativeElement
             articles._results.forEach((article: any) => {
                 this.observer.observe(article.nativeElement)
             });
@@ -57,7 +55,7 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
     observeArticles(articles : any) {
         articles.forEach((article : IntersectionObserverEntry) => {
             if (article.isIntersecting){
-                if (article.target == this.articlesLast && !this.noMoreArticles) {
+                if (article.target == this.articlesRef.last.nativeElement && !this.noMoreArticles) {
                     this.onGetMoreArticles()
                 }
                 article.target.classList.add("show")

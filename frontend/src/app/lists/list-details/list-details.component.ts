@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListsService } from 'src/app/lists/lists.service';
 import { UserService } from 'src/app/user.service';
@@ -10,7 +10,7 @@ import { LoadingService } from 'src/app/loading.service';
     templateUrl: './list-details.component.html',
     styleUrls: ['./list-details.component.scss'],
 })
-export class ListDetailsComponent implements OnInit {
+export class ListDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(
         private listService: ListsService,
         private route: ActivatedRoute,
@@ -18,6 +18,8 @@ export class ListDetailsComponent implements OnInit {
         private router: Router,
         private loadingService: LoadingService
     ) {}
+
+    @ViewChildren('listItem') listItemsRef: any;
     listInfo: any = {};
     articles: any = [];
     listId: any = '';
@@ -25,6 +27,7 @@ export class ListDetailsComponent implements OnInit {
     loading: boolean = true;
     index = 1;
     noMoreArticles = true;
+    observer = new IntersectionObserver((articles) => {this.observeListItems(articles)}, {threshold: .5});
     async ngOnInit() {
         this.loadingService.setLoading(true);
         let params: any = await this.route.params.pipe(first()).toPromise();
@@ -41,6 +44,20 @@ export class ListDetailsComponent implements OnInit {
         if (this.listId) {
             this.onGetList();
         }
+    }
+
+    ngAfterViewInit() {
+        this.listItemsRef.changes.subscribe((articles : any) => {
+            this.listItemsRef = articles.last.nativeElement
+            articles._results.forEach((article: any) => {
+                this.observer.observe(article.nativeElement)
+            });
+        })
+    }
+
+    ngOnDestroy() {
+        this.listItemsRef.unsubscribe()
+        this.observer.disconnect()
     }
 
     async onGetList() {
@@ -89,5 +106,16 @@ export class ListDetailsComponent implements OnInit {
 
     copyLink() {
         navigator.clipboard.writeText(window.location.href);
+    }
+
+    observeListItems(listItems : any) {
+        listItems.forEach((listItem : IntersectionObserverEntry) => {
+            if (listItem.isIntersecting){
+                if (listItem.target == this.listItemsRef.last.nativeElement && !this.noMoreArticles) {
+                    this.onGetList()
+                }
+            }
+            listItem.target.classList.toggle("show", listItem.isIntersecting)
+        })
     }
 }

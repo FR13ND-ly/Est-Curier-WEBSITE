@@ -4,11 +4,6 @@
     justify-content: space-between;
 }
 
-.more-articles-button {
-    width: 100%;
-    margin-bottom: 2%;
-}
-
 .list-info {
     width: 25%;
     border-radius: 10px;
@@ -57,6 +52,7 @@
     border-radius: 10px;
     margin-bottom: 3%;
     overflow: hidden;
+    opacity: 0;
     &:hover .article-title {
         color: #2196f3;
     }
@@ -90,6 +86,10 @@
     &__preview-text {
         width: 90%;
     }
+}
+.show {
+    opacity: 1;
+    animation: tie-slide-in-left .5s;
 }
 
 .loading {

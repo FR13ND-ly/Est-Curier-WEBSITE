@@ -59,6 +59,7 @@
             class="article color1 shadow1 hoverable"
             *ngFor="let article of articles"
             href="articol/{{ article.url }}"
+            #listItem
         >
             <div class="article__image-wrapper">
                 <img class="article__image" src="{{ article.cover }}" />
@@ -74,15 +75,6 @@
                 </p>
             </div>
         </a>
-        <button
-            mat-raised-button
-            class="more-articles-button"
-            color="primary"
-            (click)="onGetList()"
-            *ngIf="!noMoreArticles"
-        >
-            Afișează mai multe articole
-        </button>
     </div>
 </div>
 <div class="main loading" *ngIf="loading">
