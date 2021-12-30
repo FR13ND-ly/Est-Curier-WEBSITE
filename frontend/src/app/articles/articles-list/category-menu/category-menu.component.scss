@@ -74,6 +74,9 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .second {
+        animation-delay: 0.1s;
+    }
 }
 
 .article {
@@ -83,7 +86,7 @@ a {
     position: relative;
     display: flex;
     flex-direction: column;
-    animation: tieSlideInUp 0.5s;
+    animation: tie-slide-in-up 0.5s;
     &__image {
         border-radius: 10px;
         object-fit: cover;
@@ -118,6 +121,7 @@ a {
     flex-direction: column;
     overflow: hidden;
     position: relative;
+    animation: tie-slide-in-up 0.5s 0.2s;
     &__image {
         border-radius: 10px;
         width: 100%;
@@ -164,7 +168,7 @@ a {
     width: 48.5%;
     align-items: center;
     cursor: pointer;
-    animation: tieSlideInUp 0.5s;
+    animation: tie-slide-in-up 0.5s;
     &:hover &__image {
         filter: brightness(0.4);
         transform: scale(1.2);

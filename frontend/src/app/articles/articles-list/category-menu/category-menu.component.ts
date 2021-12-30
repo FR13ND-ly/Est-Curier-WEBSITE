@@ -25,10 +25,20 @@ export class CategoryMenuComponent implements OnInit {
         this.loading = false;
     }
 
+    resetAnimation() {
+        let articles = [...<any>document.querySelectorAll('.left-side-articles a'), document.querySelector('.feature-article'), ...<any>document.querySelectorAll('.small-article')]
+        articles.forEach((article : any) => {
+            article.style.animation = 'none'
+            article.offsetHeight
+            article.style.animation = null
+        })
+    }
+
     async onSelectCategory(category: string) {
         this.selected = category;
         this.articles = await this.articleService.getCategoryArticles(
             this.selected
         );
+        this.resetAnimation()
     }
 }
