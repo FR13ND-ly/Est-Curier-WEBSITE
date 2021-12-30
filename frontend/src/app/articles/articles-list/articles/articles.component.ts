@@ -21,12 +21,12 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
     widget: any = {};
     weeklyImg: any = {};
     loading: boolean = true;
-    observer = new IntersectionObserver((articles) => {this.observeArticles(articles)}, {threshold: .5});
+    observer = new IntersectionObserver((articles) => {this.observeArticles(articles)});
 
     async ngOnInit() {
         this.onGetArticleList();
         this.loading = false;
-        [this.widget, this.weeklyImg] = await Promise.all([await this.widgetService.getWidget(3),await this.widgetService.getWidget(4)])
+        [this.widget, this.weeklyImg] = await Promise.all([await this.widgetService.getWidget(3), await this.widgetService.getWidget(4)])
     }
 
     ngAfterViewInit() {
