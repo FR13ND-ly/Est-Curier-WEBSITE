@@ -36,7 +36,7 @@
     overflow: hidden;
     border-radius: 10px;
     margin-right: 2%;
-    animation: featureArticleAppear 0.5s linear;
+    animation: appear 0.5s;
     &:hover &__image {
         transform: scale(1.05);
     }
@@ -116,7 +116,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    animation: tieSlideInUp 0.5s;
+    animation: tie-slide-in-up 0.5s;
     &:hover &__image {
         filter: brightness(0.4);
         transform: scale(1.2);
@@ -218,11 +218,7 @@
     }
 }
 
-@keyframes featureArticleAppear {
-    0% {
-        opacity: 50%;
-    }
-    100% {
-        opacity: 100%;
-    }
+@keyframes appear {
+    0% {opacity: 0.5;}
+    100% {opacity: 1;}
 }

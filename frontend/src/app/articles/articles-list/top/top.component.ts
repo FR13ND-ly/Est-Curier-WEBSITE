@@ -28,6 +28,7 @@ export class TopComponent implements OnInit {
         this.loadingService.setLoading(true);
         this.interval = setInterval(() => {
             this.selectedIndex = ++this.selectedIndex % 5;
+            this.resetAnimation()
         }, 5000);
         let data: any = await this.articleService.getTopArticles();
         this.articlesSlider = data.primary;
@@ -42,11 +43,19 @@ export class TopComponent implements OnInit {
         this.loadingService.setLoading(false);
     }
 
+    resetAnimation() {
+        let slider : any = document.querySelector('.slider')
+        slider.style.animation = 'none';
+        slider.offsetHeight
+        slider.style.animation = null
+    }
+
     refreshInterval() {
         clearInterval(this.interval);
         this.interval = setInterval(() => {
             this.selectedIndex =
                 this.selectedIndex == 4 ? 0 : ++this.selectedIndex;
+                this.resetAnimation()
         }, 5000);
     }
 }
