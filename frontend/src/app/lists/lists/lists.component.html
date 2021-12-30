@@ -1,15 +1,15 @@
 <div *ngIf="!loading">
-    <div class="list" *ngFor="let list of lists">
+    <div class="list color1 shadow1 hoverable" *ngFor="let list of lists">
         <a
             href="/lista/{{ list.id }}"
-            class="list__name color1 shadow1 hoverable text-color1"
+            class="list__name text-color1"
             >{{ list.name }}</a
         >
         <div class="articles-wrapper">
             <a
                 *ngFor="let article of list.preview; let i = index"
                 [class.hide-on-mob]="i > 1"
-                class="article hoverable"
+                class="article"
                 href="/articol/{{ article.url }}"
             >
                 <p class="article__title">{{ article.title }}</p>
@@ -28,7 +28,7 @@
                 <img class="last-article__image" src="{{ list.lastPreview }}" />
             </a>
             <a
-                class="empty-list color1 shadow1"
+                class="empty-list color1 shadow1 text-color1"
                 *ngIf="!list.length"
                 href="/lista/{{ list.id }}"
             >
