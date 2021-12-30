@@ -52,6 +52,7 @@ export class TopComponent implements OnInit {
 
     refreshInterval() {
         clearInterval(this.interval);
+        this.resetAnimation()
         this.interval = setInterval(() => {
             this.selectedIndex =
                 this.selectedIndex == 4 ? 0 : ++this.selectedIndex;
