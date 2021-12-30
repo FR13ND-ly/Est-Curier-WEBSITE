@@ -155,7 +155,7 @@ def updateYTvideos(request):
         ytVideo = YoutubeVideo.objects.create(
             token=video['id']['videoId'],
             title=video['snippet']['title'],
-            image=video['snippet']['thumbnails']['high']['url']
+            image=video['snippet']['thumbnails']['medium']['url']
         )
         ytVideo.save()
     return JsonResponse("Video-urile au fost actualizate", safe=False)
@@ -200,7 +200,6 @@ def getArticleToEdit(request, url):
 def editArticle(request):
     data = JSONParser().parse(request)
     article = Article.objects.get(id=data['id'])
-    article.url = createUrl(data['title'].replace(' ', '-'), article.id)
     article.title = data['title']
     article.subtitle = data['subtitle']
     article.text = data['text']
@@ -273,6 +272,12 @@ def createArticle(request):
     )
     article.moreArticles = ','.join(addMoreArticles(data['moreArticles'], article.id))
     article.save()
+    for survey in data['surveys']:
+        newSurvey = Survey.objects.create(
+            article=article.id, question=survey['question'])
+        newSurvey.save()
+        for variant in survey['answers']:
+            Variant.objects.create(survey=newSurvey.id, content=variant).save()
     return JsonResponse({"id": article.id, "url": article.url}, safe=False)
 
 
