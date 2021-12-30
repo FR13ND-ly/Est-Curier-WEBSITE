@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   scroll = 0;
   isDarkTheme: boolean = false
   
-  constructor(public overlayContainer: OverlayContainer, private snackBar: MatSnackBar, private scrollDispatcher: ScrollDispatcher, private searchService : SearchService, private userService : UserService, private loadingService : LoadingService){}
+  constructor(public overlayContainer: OverlayContainer, private snackBar: MatSnackBar, private scrollDispatcher: ScrollDispatcher, private searchService : SearchService, private userService : UserService, private loadingService : LoadingService, private changeDetectorRef: ChangeDetectorRef){}
 
   opened: boolean = false
   openedSearch: boolean = false
@@ -46,7 +46,9 @@ export class AppComponent implements OnInit {
     this.loadingService.getOpenUpdateListener()
         .subscribe((loading: boolean) => {
           this.loading = loading
+          this.changeDetectorRef.detectChanges();
         })
+    
   }
 
   @HostListener('keydown', ['$event']) onKeyDown(e : any) {
