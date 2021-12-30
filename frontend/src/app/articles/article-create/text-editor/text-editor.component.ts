@@ -93,7 +93,6 @@ export class TextEditorComponent implements OnInit {
         }
       })
       editImageDialog.afterClosed().subscribe(data => {
-        this.textEditor.focus()
         this.format("insertHTML", `<img title="${data.legend}" align="${data.align}" style="width: ${data.size}" src="${result.actualImage}"/>`)
       })
     });

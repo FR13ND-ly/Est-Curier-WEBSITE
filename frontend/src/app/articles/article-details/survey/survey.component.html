@@ -1,7 +1,7 @@
 <div class="main" *ngIf="surveys?.length">
     <div class="survey color1 shadow1">
         <h1><span *ngIf="surveys.length > 1">{{ selected + 1 }}. </span>{{ surveys[selected].question}}</h1>
-        <div class="surveys__arrows" *ngIf="surveys?.length - 1">
+        <div class="survey__arrows" *ngIf="surveys?.length - 1">
             <mat-icon class="survey__arrow-left" (click)="changeSurvey(1)">chevron_left</mat-icon>
             <mat-icon class="survey__arrow-right" (click)="changeSurvey(0)">chevron_right</mat-icon>
         </div>
