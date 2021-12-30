@@ -41,7 +41,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy() {
         this.observer.disconnect()
-        this.commentsRef.unsubscribe()
+        this.commentsRef.changes.unsubscribe()
         this.commentsSub?.unsubscribe();
     }
 

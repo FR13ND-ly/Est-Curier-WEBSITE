@@ -5,7 +5,7 @@
 <form
     (submit)="onAddComment(commentForm)"
     #commentForm="ngForm"
-    *ngIf="info.token"
+    *ngIf="info.token && !info.disableComments"
 >
     <div class="add-comment">
         <img class="add-comment__user-photo" src="{{ info.photoURL }}" />

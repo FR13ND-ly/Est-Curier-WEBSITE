@@ -1,9 +1,7 @@
 <div class="main" *ngIf="!loading">
     <div class="article">
         <div class="admin-menu hide-on-mob" *ngIf="user?.isStaff">
-            <button mat-raised-button color="primary" style="margin-right: 5%" routerLink="/edita-articol/{{ url }}">
-                Editează
-            </button>
+            <button mat-raised-button color="primary" routerLink="/edita-articol/{{ url }}">Editează</button>
             <button (click)="onDeleteArticle()" mat-raised-button color="warn" routerLink="/">Șterge</button>
         </div>
         <div class="tag-wrapper">
@@ -34,7 +32,7 @@
     <app-survey [id]="article.id"></app-survey>
     <div class="article-actions color1">
         <button mat-raised-button class="like-button" (click)="onAddLike()">
-            <mat-icon>{{ likes.liked }}</mat-icon><div style="display: inline; font-size: 22px; margin-left: .1rem;">{{ likes.count }}</div>
+            <mat-icon>{{ likes.liked }}</mat-icon><div style="display: inline; font-size: 22px; margin-left: .1rem;">{{ article.hideLikesCount ? '' : likes.count }}</div>
         </button>
         <button mat-raised-button class="playlist-button" [matMenuTriggerFor]="menu" (click)="onGetLists()" *ngIf="!!user"><mat-icon>add_to_photos</mat-icon></button>
         <button mat-icon-button class="share-button" (click)="share = !share"><mat-icon>share</mat-icon></button>
@@ -63,7 +61,7 @@
         </mat-menu>
     </div>
     <div class="additional-content">
-        <app-comments [info]="{ token: user?.uid, photoURL: user?.photoURL, id: article.id, isStaff : user?.isStaff }"></app-comments>
+        <app-comments [info]="{ token: user?.uid, photoURL: user?.photoURL, id: article.id, isStaff : user?.isStaff, disableComments : article.disableComments }"></app-comments>
         <app-more-articles *ngIf="article.moreArticles" [articles]="article.moreArticles"></app-more-articles>
     </div>
 </div>
