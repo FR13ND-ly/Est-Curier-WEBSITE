@@ -6,7 +6,7 @@ $light-theme: mat.define-light-theme(
         color: (
             primary: mat.define-palette(mat.$deep-purple-palette),
             accent: mat.define-palette(mat.$teal-palette),
-        ),
+        )
     )
 );
 $dark-theme: mat.define-dark-theme(
@@ -14,14 +14,14 @@ $dark-theme: mat.define-dark-theme(
             color: (
                 primary: mat.define-palette(mat.$deep-purple-palette),
                 accent: mat.define-palette(mat.$teal-palette),
-            ),
+            )
         )
     );
 
 
 .dark-theme {
     @include mat.all-component-colors($dark-theme);
-    .color1, .sidenav, .header, .mat-dialog-container, .mat-snack-bar-container span {
+    .color1, .sidenav, .header, .mat-dialog-container, .mat-snack-bar-container {
         background-color: #37474f;
         color: #fff;
     }
@@ -68,7 +68,7 @@ $dark-theme: mat.define-dark-theme(
         background-color: #e0e0e0;
     }
     .app-frame, blockquote::before, .action &:hover {
-        background-color: #eee !important;
+        background-color: #eee;
     }
     .inversed-color {
         background-color: #37474f !important;
