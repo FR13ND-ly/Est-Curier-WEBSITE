@@ -52,10 +52,9 @@
     &:hover &__preview-img {
         filter: brightness(80%);
     }
-}
-
-.selected-video .youtube__preview-img {
-    border: 5px solid #2196f3;
+    .selected-video &__preview-img {
+        border: 5px solid #2196f3;
+    }
 }
 
 .loading {
