@@ -11,7 +11,7 @@ export class ListsService {
     readonly APIUrl = config.apiUrl;
 
     getLightLists(data: any) {
-        return this.http.post(this.APIUrl + 'getLightList/', data).toPromise();
+        return this.http.post(this.APIUrl + 'getLightList/', data);
     }
 
     addToList(data: any) {
@@ -19,24 +19,22 @@ export class ListsService {
     }
 
     getLists(id: any) {
-        return this.http.get(`${this.APIUrl}getFullLists/${id}`).toPromise();
+        return this.http.get(`${this.APIUrl}getFullLists/${id}`);
     }
 
     addList(data: any) {
-        return this.http.post(this.APIUrl + 'addList/', data).toPromise();
+        return this.http.post(this.APIUrl + 'addList/', data);
     }
 
     getListInfo(data: any) {
-        return this.http.post(this.APIUrl + 'getListInfo/', data).toPromise();
+        return this.http.post(this.APIUrl + 'getListInfo/', data)
     }
     getListArticles(data: any) {
-        return this.http
-            .post(this.APIUrl + 'getListArticles/', data)
-            .toPromise();
+        return this.http.post(this.APIUrl + 'getListArticles/', data)
     }
 
     removeList(id: any) {
-        return this.http.get(`${this.APIUrl}removeList/${id}`).toPromise();
+        return this.http.get(`${this.APIUrl}removeList/${id}`).subscribe();
     }
 
     changeTitle(data: any) {

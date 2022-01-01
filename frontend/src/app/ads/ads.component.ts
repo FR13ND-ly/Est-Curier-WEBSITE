@@ -36,24 +36,25 @@ export class AdsComponent implements OnInit, OnDestroy {
         this.userSub?.unsubscribe();
     }
 
-    async onSaveChanges(ad: Ad) {
-        await this.adService.editAd(ad);
-        ad.edit = false;
-        this.onGetAds();
+    onSaveChanges(ad: Ad) {
+        this.adService.editAd(ad).subscribe(() => {
+            ad.edit = false;
+            this.onGetAds();
+        });   
     }
 
-    async onAddAd(ad: NgForm) {
-        await this.adService.addAd(ad.value);
-        ad.reset();
-        this.onGetAds();
+    onAddAd(ad: NgForm) {
+        this.adService.addAd(ad.value).subscribe(() => {
+            ad.reset();
+            this.onGetAds();
+        })
     }
 
-    async onGetAds() {
-        this.ads = <Ad[]>await this.adService.getAds();
+    onGetAds() {
+        this.adService.getAds().subscribe((ads : any) => this.ads = ads);
     }
 
-    async onRemoveAd(id: number) {
-        await this.adService.removeAd(id);
-        this.onGetAds();
+    onRemoveAd(id: number) {
+        this.adService.removeAd(id).subscribe(() => this.onGetAds())
     }
 }

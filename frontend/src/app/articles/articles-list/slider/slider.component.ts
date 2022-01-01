@@ -14,10 +14,11 @@ export class SliderComponent implements OnInit {
   slides : any = []
   loading : boolean = true
 
-  async ngOnInit() {
-    this.slides = await this.articlesService.getCategoryArticles('longread')
-    this.slides = this.slides.slice(0, 4)
-    this.loading = false
+  ngOnInit() {
+    this.articlesService.getCategoryArticles('longread').subscribe((slides : any) => {
+      this.slides = slides
+      this.loading = false
+    })
   }
 
   searchLongReads(){

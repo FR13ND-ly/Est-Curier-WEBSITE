@@ -68,6 +68,6 @@ export class UserService {
   }
 
   getFastInfo() {
-    return this.http.get(`${this.APIUrl}getFastInfo/`).toPromise()
+    return this.http.get(`${this.APIUrl}getFastInfo/`)
   }
 }

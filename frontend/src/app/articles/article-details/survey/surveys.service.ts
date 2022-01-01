@@ -10,10 +10,10 @@ export class SurveysService {
     readonly APIUrl = config.apiUrl;
 
     getSurvey(data: any) {
-        return this.http.post(this.APIUrl + 'getSurvey/', data).toPromise();
+        return this.http.post(this.APIUrl + 'getSurvey/', data);
     }
 
     vote(data: any) {
-        return this.http.post(this.APIUrl + 'vote/', data).toPromise();
+        return this.http.post(this.APIUrl + 'vote/', data);
     }
 }

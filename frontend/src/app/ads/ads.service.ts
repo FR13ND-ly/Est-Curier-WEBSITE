@@ -12,18 +12,18 @@ export class AdsService {
   readonly APIUrl = config.apiUrl
 
   getAds(){
-    return this.http.get(`${this.APIUrl}getAdons/`).toPromise()
+    return this.http.get(`${this.APIUrl}getAdons/`)
   }
 
   addAd(data: any){
-    return this.http.post(`${this.APIUrl}addAdon/`, data).toPromise()
+    return this.http.post(`${this.APIUrl}addAdon/`, data)
   }
 
   editAd(data: any){
-    return this.http.post(`${this.APIUrl}editAdon/`, data).toPromise()
+    return this.http.post(`${this.APIUrl}editAdon/`, data)
   }
 
   removeAd(id: any){
-    return this.http.get(`${this.APIUrl}removeAdon/${id}/`).toPromise()
+    return this.http.get(`${this.APIUrl}removeAdon/${id}/`)
   }
 }

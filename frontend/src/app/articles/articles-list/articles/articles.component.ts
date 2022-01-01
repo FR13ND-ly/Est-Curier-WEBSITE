@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChildren } from '@angular/core';
 import { ArticlesService } from 'src/app/articles.service';
 import { WidgetsService } from 'src/app/widgets/widgets.service';
 
@@ -23,10 +23,10 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
     loading: boolean = true;
     observer = new IntersectionObserver((articles) => {this.observeArticles(articles)});
 
-    async ngOnInit() {
+    ngOnInit() {
         this.onGetArticleList();
-        this.loading = false;
-        [this.widget, this.weeklyImg] = await Promise.all([await this.widgetService.getWidget(3), await this.widgetService.getWidget(4)])
+        this.widgetService.getWidget(3).subscribe((widget: any) => this.widget = widget)
+        this.widgetService.getWidget(4).subscribe((weeklyImg: any) => this.weeklyImg = weeklyImg)
     }
 
     ngAfterViewInit() {
@@ -41,10 +41,12 @@ export class ArticlesComponent implements OnInit, AfterViewInit, OnDestroy {
         this.observer.disconnect()
     }
 
-    async onGetArticleList() {
-        let data: any = await this.articleService.getArticleList(this.index);
-        this.articleList.push(...data.articles);
-        this.noMoreArticles = data.noMoreArticles;
+    onGetArticleList() {
+        this.articleService.getArticleList(this.index).subscribe((data:any)=> {
+            this.articleList.push(...data.articles);
+            this.noMoreArticles = data.noMoreArticles;
+            this.loading = false;
+        })
     }   
 
     onGetMoreArticles() {

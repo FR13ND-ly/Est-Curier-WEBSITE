@@ -11,10 +11,10 @@ export class YoutubeService {
     readonly APIUrl = config.apiUrl;
 
     getVideos() {
-        return this.http.get(`${this.APIUrl}getYTvideos/`).toPromise();
+        return this.http.get(`${this.APIUrl}getYTvideos/`);
     }
 
     updateVideos() {
-        return this.http.get(`${this.APIUrl}updateYTvideos/`).toPromise();
+        return this.http.get(`${this.APIUrl}updateYTvideos/`);
     }
 }

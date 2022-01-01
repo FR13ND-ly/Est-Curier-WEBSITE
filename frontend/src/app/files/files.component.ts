@@ -20,10 +20,10 @@ export class FilesComponent implements OnInit, OnDestroy {
     noMoreFiles: boolean = false;
     loading: boolean = true;
     private userSub: Subscription | undefined;
-    async ngOnInit() {
+    ngOnInit() {
         this.userSub = this.userService
             .getUserUpdateListener()
-            .subscribe(async (user: any) => {
+            .subscribe((user: any) => {
                 if (!user || !user.isStaff) {
                     this.router.navigate(['/']);
                 }
@@ -35,16 +35,20 @@ export class FilesComponent implements OnInit, OnDestroy {
         this.userSub?.unsubscribe();
     }
 
-    async getFiles() {
-        let data: any = await this.fileService.getFiles(this.index);
-        this.files.push(...data.files);
-        this.noMoreFiles = data.noMoreFiles;
-        this.loading = false;
+    getFiles() {
+        this.fileService.getFiles(this.index).subscribe(((data : any) => {
+            this.files.push(...data.files);
+            this.noMoreFiles = data.noMoreFiles;
+            this.loading = false;
+        }))
     }
 
-    async onRemoveFile(id: number) {
-        await this.fileService.removeFile(id);
-        this.files = await this.fileService.getFiles(this.index);
+    onRemoveFile(id: number) {
+        this.fileService.removeFile(id).subscribe(() => {
+            this.index = 1
+            this.files = []
+            this.getFiles()
+        })
     }
 
     onGetMoreFiles() {

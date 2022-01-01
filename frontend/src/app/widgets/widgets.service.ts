@@ -11,14 +11,14 @@ export class WidgetsService {
     private readonly APIUrl = config.apiUrl;
 
     getWidget(id: any) {
-        return this.http.get(`${this.APIUrl}getWidget/${id}/`).toPromise();
+        return this.http.get(`${this.APIUrl}getWidget/${id}/`);
     }
 
     getWidgets() {
-        return this.http.get(`${this.APIUrl}getWidgets/`).toPromise();
+        return this.http.get(`${this.APIUrl}getWidgets/`);
     }
 
-    async editWidget(data: any) {
-        await this.http.post(`${this.APIUrl}editWidget/`, data).toPromise();
+    editWidget(data: any) {
+        this.http.post(`${this.APIUrl}editWidget/`, data).subscribe();
     }
 }

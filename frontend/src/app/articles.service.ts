@@ -30,35 +30,35 @@ export class ArticlesService {
   }
 
   getArticle(url: string) {
-    return this.http.get(`${this.APIUrl}getArticle/${url}`).toPromise()
+    return this.http.get(`${this.APIUrl}getArticle/${url}`)
   }
 
-  async addView(data: any){
-    await this.http.post(this.APIUrl + 'addView/', data).toPromise()
+  addView(data: any){
+    this.http.post(this.APIUrl + 'addView/', data).subscribe()
   }
 
   getLikes(data: any) {
-    return this.http.post(this.APIUrl + 'getLikes/', data).toPromise()
+    return this.http.post(this.APIUrl + 'getLikes/', data)
   }
 
   addLike(data: any) {
-    return this.http.post(this.APIUrl + 'addLike/', data).toPromise()
+    return this.http.post(this.APIUrl + 'addLike/', data)
   }
 
   getArticleList(index: any) {
-    return this.http.get(`${this.APIUrl}getArticleList/${index}/`).toPromise()
+    return this.http.get(`${this.APIUrl}getArticleList/${index}/`)
   }
   
   getTopArticles() {
-    return this.http.get(this.APIUrl + 'getTopArticles/').toPromise()
+    return this.http.get(this.APIUrl + 'getTopArticles/')
   }
 
   getCategoryArticles(tag: string) {
-    return this.http.get(`${this.APIUrl}getCategoryArticles/${tag}/`).toPromise()
+    return this.http.get(`${this.APIUrl}getCategoryArticles/${tag}/`)
   }
 
   deleteArticle(id : string) {
-    return this.http.get(`${this.APIUrl}deleteArticle/${id}/`).toPromise()
+    return this.http.get(`${this.APIUrl}deleteArticle/${id}/`)
   }
 
   getArticleToEdit(id : string) {

@@ -15,19 +15,19 @@ export class CommentsService {
 
   private commentsUpdated = new Subject<any[][]>() 
 
-  async addComment(data : any) {
-    await this.http.post(this.APIUrl + 'addComment/', data).toPromise()
-    this.getComments(data.id)
+  addComment(data : any) {
+    this.http.post(this.APIUrl + 'addComment/', data).subscribe(() => this.getComments(data.id))
   }
 
-  async removeComment(pk : any, id : any) {
-    await this.http.delete(`${this.APIUrl}removeComment/${pk}/`).toPromise()
-    this.getComments(id)
+  removeComment(pk : any, id : any) {
+    this.http.delete(`${this.APIUrl}removeComment/${pk}/`).subscribe(() => this.getComments(id))
   }
 
-  async getComments(id : any) {
-    this.comments = await this.http.get(`${this.APIUrl}getComments/${id}`).toPromise()
-    this.commentsUpdated.next([...this.comments])
+  getComments(id : any) {
+    this.http.get(`${this.APIUrl}getComments/${id}`).subscribe((comments) => {
+      this.comments = comments
+      this.commentsUpdated.next([...this.comments])
+    })
   }
 
   getCommentsUpdateListener() {

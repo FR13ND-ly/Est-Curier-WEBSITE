@@ -11,15 +11,15 @@ export class FileService {
   readonly APIUrl = config.apiUrl
 
   getFiles(index: any){
-    return this.http.get(`${this.APIUrl}getFiles/${index}/`).toPromise()
+    return this.http.get(`${this.APIUrl}getFiles/${index}/`)
   }
 
   removeFile(id: any) {
-    return this.http.get(`${this.APIUrl}removeFile/${id}/`).toPromise()
+    return this.http.get(`${this.APIUrl}removeFile/${id}/`)
   }
 
   uploadFile(file : any) {
-    return this.http.post(this.APIUrl + 'uploadFile/', file).toPromise()
+    return this.http.post(this.APIUrl + 'uploadFile/', file)
   }
   uploadPdf(file: any) {
     return this.http.post(this.APIUrl + 'uploadPdf/', file).toPromise()

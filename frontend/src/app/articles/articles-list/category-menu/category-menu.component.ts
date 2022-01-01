@@ -17,11 +17,9 @@ export class CategoryMenuComponent implements OnInit {
     articles: any = [];
     widget: any;
     loading: boolean = true;
-    async ngOnInit() {
-        this.articles = await this.articleService.getCategoryArticles(
-            this.selected
-        );
-        this.widget = await this.widgetService.getWidget(2);
+    ngOnInit() {
+        this.articleService.getCategoryArticles(this.selected).subscribe((articles : any) => this.articles = articles);
+        this.widgetService.getWidget(2).subscribe((widget: any) => this.widget = widget);
         this.loading = false;
     }
 
@@ -34,11 +32,9 @@ export class CategoryMenuComponent implements OnInit {
         })
     }
 
-    async onSelectCategory(category: string) {
+    onSelectCategory(category: string) {
         this.selected = category;
-        this.articles = await this.articleService.getCategoryArticles(
-            this.selected
-        );
+        this.articleService.getCategoryArticles(this.selected).subscribe((articles: any) => this.articles = articles);
         this.resetAnimation()
     }
 }

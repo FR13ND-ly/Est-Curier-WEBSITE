@@ -28,22 +28,22 @@ export class ListDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     index = 1;
     noMoreArticles = true;
     observer = new IntersectionObserver((articles) => {this.observeListItems(articles)}, {threshold: .5});
-    async ngOnInit() {
+    ngOnInit() {
         this.loadingService.setLoading(true);
-        let params: any = await this.route.params.pipe(first()).toPromise();
-        this.listId = params['id'];
-        if (this.listId == 'istoric') {
-            this.listId = -1;
-        } else if (this.listId == 'aprecieri') {
-            this.listId = -2;
-        }
-        this.user = await this.userService
-            .getUserUpdateListener()
-            .pipe(first())
-            .toPromise();
-        if (this.listId) {
-            this.onGetList();
-        }
+        let params: any = this.route.params.subscribe((params : any) => {
+            this.listId = params['id'];
+            if (this.listId == 'istoric') {
+                this.listId = -1;
+            } else if (this.listId == 'aprecieri') {
+                this.listId = -2;
+            }
+            this.userService.getUserUpdateListener().subscribe((user : any) => {
+                this.user = user
+                if (this.listId) {
+                    this.onGetList();
+                }
+            })
+        });
     }
 
     ngAfterViewInit() {
@@ -60,32 +60,34 @@ export class ListDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.observer.disconnect()
     }
 
-    async onGetList() {
-        this.listInfo = await this.listService.getListInfo({
+    onGetList() {
+        this.listInfo = this.listService.getListInfo({
             id: this.listId,
             token: this.user.uid,
-        });
-
-        if (this.listId > 0) {
-            if (this.listInfo == 'Nu am găsit această listă') {
-                this.router.navigate(['/']);
-                return;
+        }).subscribe((listInfo : any) => {
+            this.listInfo = listInfo
+            if (this.listId > 0) {
+                if (this.listInfo == 'Nu am găsit această listă') {
+                    this.router.navigate(['/']);
+                    return;
+                }
+                if (!this.listInfo.own && this.listInfo.public) {
+                    this.router.navigate(['/']);
+                    return;
+                }
             }
-            if (!this.listInfo.own && this.listInfo.public) {
-                this.router.navigate(['/']);
-                return;
-            }
-        }
-        let data: any = await this.listService.getListArticles({
-            id: this.listId,
-            token: this.user.uid,
-            index: this.index,
-        });
-        this.articles.push(...data.articles);
-        this.noMoreArticles = data.noMoreArticles;
-        this.loading = false;
-        this.loadingService.setLoading(false);
-        this.index++;
+            this.listService.getListArticles({
+                id: this.listId,
+                token: this.user.uid,
+                index: this.index,
+            }).subscribe((data : any) => {
+                this.articles.push(...data.articles);
+                this.noMoreArticles = data.noMoreArticles;
+                this.loading = false;
+                this.loadingService.setLoading(false);
+                this.index++;
+            });
+        })
     }
 
     onRemoveList() {

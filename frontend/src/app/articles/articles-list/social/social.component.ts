@@ -19,10 +19,12 @@ export class SocialComponent implements OnInit {
   
   loading: boolean = true
 
-  async ngOnInit() {
-    this.videos = await this.youtubeService.getVideos()
-    this.onSelectVideo(0)
-    this.loading = false
+  ngOnInit() {
+    this.youtubeService.getVideos().subscribe((videos : any) => {
+      this.videos = videos
+      this.onSelectVideo(0)
+      this.loading = false
+    })
   }
 
   onSelectVideo(index : number) {

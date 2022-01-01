@@ -11,7 +11,7 @@ export class MoreArticlesComponent implements OnInit {
     widget: any;
     constructor(private widgetService: WidgetsService) {}
 
-    async ngOnInit() {
-        this.widget = await this.widgetService.getWidget(2);
+    ngOnInit() {
+        this.widgetService.getWidget(2).subscribe((widget : any) => this.widget = widget);
     }
 }

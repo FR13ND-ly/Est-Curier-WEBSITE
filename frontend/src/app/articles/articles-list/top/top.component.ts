@@ -24,21 +24,21 @@ export class TopComponent implements OnInit {
     interval: any;
     loading: boolean = true;
 
-    async ngOnInit() {
+    ngOnInit() {
         this.loadingService.setLoading(true);
         this.interval = setInterval(() => {
             this.selectedIndex = ++this.selectedIndex % 5;
             this.resetAnimation()
         }, 5000);
-        let data: any = await this.articleService.getTopArticles();
-        this.articlesSlider = data.primary;
- 
-        this.widget1 = await this.widgetService.getWidget(1);
-        this.widget2 = await this.widgetService.getWidget(5);
-        this.sideArticles = data.secondary.slice(
-            0,
-            2 + Number(!this.widget1?.activated)
-        );
+        this.articleService.getTopArticles().subscribe((data: any) => {
+            this.articlesSlider = data.primary;
+            this.sideArticles = data.secondary.slice(
+                0,
+                2 + Number(!this.widget1?.activated)
+            );
+        });
+        this.widgetService.getWidget(1).subscribe((widget : any) => this.widget1 = widget);
+        this.widgetService.getWidget(5).subscribe((widget: any) => this.widget2 = widget);
         this.loading = false;
         this.loadingService.setLoading(false);
     }

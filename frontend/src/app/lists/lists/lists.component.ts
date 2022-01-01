@@ -26,13 +26,15 @@ export class ListsComponent implements OnInit, OnDestroy {
         this.loadingService.setLoading(true);
         this.userSub = this.userService
             .getUserUpdateListener()
-            .subscribe(async (user: any) => {
+            .subscribe((user: any) => {
                 if (!user) {
                     this.router.navigate(['/']);
                 }
-                this.lists = <List[]>await this.listService.getLists(user.uid);
-                this.loading = false;
-                this.loadingService.setLoading(false);
+                this.listService.getLists(user.uid).subscribe((lists : any) => {
+                    this.lists = lists
+                    this.loading = false;
+                    this.loadingService.setLoading(false);
+                });
             });
     }
 

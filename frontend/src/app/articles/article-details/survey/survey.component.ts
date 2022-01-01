@@ -20,12 +20,12 @@ export class SurveyComponent implements OnInit {
     ngOnInit() {
         this.userService
             .getUserUpdateListener()
-            .subscribe(async (user: any) => {
+            .subscribe((user: any) => {
                 this.user = user;
-                this.surveys = await this.surveyService.getSurvey({
+                this.surveyService.getSurvey({
                     id: this.id,
                     token: this.user ? this.user.uid : -1,
-                });
+                }).subscribe((surveys : any) => this.surveys = surveys);
             });
     }
 
@@ -39,12 +39,13 @@ export class SurveyComponent implements OnInit {
         }
     }
 
-    async onVote(id: any) {
+    onVote(id: any) {
         if (this.user) {
-            await this.surveyService.vote({ id, token: this.user.uid });
-            this.surveys = await this.surveyService.getSurvey({
-                id: this.id,
-                token: this.user.uid,
+            this.surveyService.vote({ id, token: this.user.uid }).subscribe(() => {
+                this.surveyService.getSurvey({
+                    id: this.id,
+                    token: this.user ? this.user.uid : -1,
+                }).subscribe((surveys : any) => this.surveys = surveys);
             });
         }
     }

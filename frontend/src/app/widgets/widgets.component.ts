@@ -37,7 +37,7 @@ export class WidgetsComponent implements OnInit, OnDestroy {
                 if (!user || !user.isStaff) {
                     this.router.navigate(['/']);
                 }
-                this.widgets = <Widget[]>await this.widgetService.getWidgets();
+                this.widgetService.getWidgets().subscribe((widget : any) => this.widgets = widget)
             });
     }
 
@@ -70,10 +70,11 @@ export class WidgetsComponent implements OnInit, OnDestroy {
         });
     }
 
-    async onUpdateVideos() {
+    onUpdateVideos() {
         this.loadingService.setLoading(true);
-        let message: string = <string>await this.youtubeService.updateVideos();
-        this._snackBar.open(message, '', { duration: 3000 });
-        this.loadingService.setLoading(false);
+        this.youtubeService.updateVideos().subscribe((message : any) => {
+            this._snackBar.open(message, '', { duration: 3000 });
+            this.loadingService.setLoading(false);
+        });
     }
 }

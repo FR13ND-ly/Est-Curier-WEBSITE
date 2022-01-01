@@ -19,11 +19,11 @@ export class FileManagerComponent implements OnInit {
   noMoreFiles : boolean = false
   index: number = 1
 
-  async ngOnInit() {
+  ngOnInit() {
     this.getFiles()
   }
 
-  async onUpload(e : any, fromDrag: boolean) {
+  onUpload(e : any, fromDrag: boolean) {
     this.dragging = false
     
     let file = fromDrag? e.dataTransfer.files[0] : e.target.files[0]
@@ -34,11 +34,12 @@ export class FileManagerComponent implements OnInit {
     let formData = new FormData()
     formData.append('file', file, file.name)
     this.loading = true
-    await this.fileService.uploadFile(formData)
-    this.index = 1
-    this.files = []
-    this.getFiles()
-    this.loading = false
+    this.fileService.uploadFile(formData).subscribe(() => {
+      this.index = 1
+      this.files = []
+      this.getFiles()
+      this.loading = false
+    })
   }
 
   selectFile(i : number) {
@@ -54,10 +55,11 @@ export class FileManagerComponent implements OnInit {
     }
   }
 
-  async getFiles() {
-    let data : any = await this.fileService.getFiles(this.index)
-    this.files.push(...data.files)
-    this.noMoreFiles = data.noMoreFiles
+  getFiles() {
+    this.fileService.getFiles(this.index).subscribe((data : any) => {
+      this.files.push(...data.files)
+      this.noMoreFiles = data.noMoreFiles
+    })
   }
 
   onGetMoreFiles() {

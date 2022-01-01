@@ -51,26 +51,28 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
           this.getLikes()
         }
       }) 
-    this.route.params.subscribe(async params => {
+    this.route.params.subscribe(params => {
       this.url = params['url']
-      this.article = await this.articleService.getArticle(this.url)
-      if (this.article == "Nu am găsit acest articol"){
-        this.router.navigate(['/'])
-        return
-      }
-      this.onSetPageTitle(this.article.title)
-      this.onSetMetaTags()
-      this.article.text = this.domSanitizer.bypassSecurityTrustHtml(this.article.text)
-      this.loading = false
-      this.loadingService.setLoading(false)
-      setTimeout(() => {
-        document.getElementById('article-text')?.querySelectorAll('h1').forEach(element => {
-          this.titles.push({
-            "content" : element.innerText,
-            "element" : element
+      this.articleService.getArticle(this.url).subscribe((article : any)=> {
+        this.article = article
+        if (this.article == "Nu am găsit acest articol"){
+          this.router.navigate(['/'])
+          return
+        }
+        this.onSetPageTitle(this.article.title)
+        this.onSetMetaTags()
+        this.article.text = this.domSanitizer.bypassSecurityTrustHtml(this.article.text)
+        this.loading = false
+        this.loadingService.setLoading(false)
+        setTimeout(() => {
+          document.getElementById('article-text')?.querySelectorAll('h1').forEach(element => {
+            this.titles.push({
+              "content" : element.innerText,
+              "element" : element
+            })
           })
-        })
-      }, 0)
+        }, 0)
+      })
     });
   }
 
@@ -96,20 +98,19 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     this.userSub?.unsubscribe()
   }
 
-  async getLikes(){
-    this.likes = await this.articleService.getLikes({
+  getLikes(){
+    this.articleService.getLikes({
       id : this.article.id,
       token : this.user ? this.user.uid : -1
-    })
+    }).subscribe((likes : any) => this.likes = likes)
   }
 
-  async onAddLike(){
+  onAddLike(){
     if (this.user){
-      await this.articleService.addLike({
+      this.articleService.addLike({
         id : this.article.id,
         token : this.user.uid
-      })
-      this.getLikes()
+      }).subscribe(() => this.getLikes())
     }
     else {
       let a =this._snackBar.open("Trebuie să te loghezi", "Autentificare", {duration: 3000});
@@ -117,11 +118,11 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  async onGetLists() {
-    this.lists = await this.listsService.getLightLists({
+  onGetLists() {
+    this.listsService.getLightLists({
       id : this.article.id,
       token : this.user.uid
-    })
+    }).subscribe((list : any) => this.lists = list)
   }
 
   onAddToList(pk: any) {
@@ -131,15 +132,16 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     })
   }
 
-  async onAddList(addListForm : any){
+  onAddList(addListForm : any){
     let data = {
       name : addListForm.form.value.name,
       access : addListForm.form.value.access? true : false,
       user : this.user.uid
     }
-    await this.listsService.addList(data)
-    addListForm.reset()
-    this.addList = false
+    this.listsService.addList(data).subscribe(() => {
+      addListForm.reset()
+      this.addList = false
+    })
   }
 
   onSearchByTag(tag: string){
@@ -147,7 +149,7 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   }
 
   onDeleteArticle() {
-    this.articleService.deleteArticle(this.article.id)
+    this.articleService.deleteArticle(this.article.id).subscribe()
   }
 
   goToTitle(title: any) {
@@ -166,9 +168,5 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     if (windowShare.focus) {
       windowShare.focus();
     }
-  }
-
-  onViberShare(e : any) {
-    
   }
 }
