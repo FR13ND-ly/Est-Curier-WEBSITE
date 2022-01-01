@@ -27,17 +27,17 @@ export class ListDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     loading: boolean = true;
     index = 1;
     noMoreArticles = true;
-    observer = new IntersectionObserver((articles) => {this.observeListItems(articles)}, {threshold: .5});
+    observer = new IntersectionObserver((articles) => {this.observeListItems(articles)}, {threshold: .2});
     ngOnInit() {
         this.loadingService.setLoading(true);
-        let params: any = this.route.params.subscribe((params : any) => {
+        this.route.params.subscribe((params : any) => {
             this.listId = params['id'];
             if (this.listId == 'istoric') {
                 this.listId = -1;
             } else if (this.listId == 'aprecieri') {
                 this.listId = -2;
             }
-            this.userService.getUserUpdateListener().subscribe((user : any) => {
+            this.userService.getUserUpdateListener().pipe(first()).subscribe((user : any) => {
                 this.user = user
                 if (this.listId) {
                     this.onGetList();
