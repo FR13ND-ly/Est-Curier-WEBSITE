@@ -1,4 +1,4 @@
-<div class="main" *ngIf="!loading">
+<div class="main" [style.display]="!loading ? 'flex' : 'none'">
     <div class="articles-wrapper">
         <h1 class="articles-wrapper__header hide-on-mob">Ultimele Noutăți</h1>
         <a
@@ -48,7 +48,7 @@
         </a>
     </div>
     <div class="side hide-on-mob">
-        <div *ngIf="widget.activated" class="widget color1 shadow1 hoverable">
+        <div [style.display]="widget?.activated ? 'block' : 'none'" class="widget color1 shadow1 hoverable">
             <mat-icon class="widget__monetization">monetization_on</mat-icon>
             <a
                 class="widget__content-wrapper text-color1"
@@ -68,7 +68,7 @@
         />
         <div
             class="weekly-image color1 shadow1 hoverable"
-            *ngIf="weeklyImg.activated"
+            [style.display]="weeklyImg?.activated ? 'block' : 'none'"
         >
             <div class="weekly-image__details">
                 <h2 class="weekly-image__title">{{ weeklyImg.text }}</h2>
@@ -81,7 +81,7 @@
         </div>
     </div>
 </div>
-<div class="main loading" *ngIf="loading">
+<div class="main loading" [style.display]="loading ? 'block' : 'none'">
     <div class="articles">
         <div
             class="article color1"

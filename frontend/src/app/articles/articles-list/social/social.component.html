@@ -1,5 +1,5 @@
 <div class="main">
-    <div class="youtube-videos-wrapper" *ngIf="!loading">
+    <div class="youtube-videos-wrapper" [style.display]="!loading ? 'flex' : 'none'">
         <iframe class="main-video shadow1" [src]="selectedVideo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="youtube-videos-list color1 shadow1">
             <div class="youtube-video" [class.selected-video]="selected == i" *ngFor="let video of videos; let i = index" (click)="onSelectVideo(i)">
@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="loading youtube-videos-wrapper" *ngIf="loading">
+    <div class="loading youtube-videos-wrapper" [style.display]="loading ? 'flex' : 'none'">
         <div class="video-box"></div>
         <div class="youtube-videos-list color1">
             <div class="youtube-video" *ngFor="let video of [1, 2, 3]">

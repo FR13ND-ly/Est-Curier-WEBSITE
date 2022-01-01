@@ -5,14 +5,12 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './surveys.component.html',
   styleUrls: ['./surveys.component.scss']
 })
-export class SurveysComponent implements OnInit {
+export class SurveysComponent {
 
   @Input() surveys : any | undefined
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
   selectedIndex = 0 
 
   onAddNewSurvey() {
@@ -21,9 +19,5 @@ export class SurveysComponent implements OnInit {
       answers : [[''], ['']]
     })
     this.selectedIndex = this.surveys.length
-  }
-
-  deleteAnswer(answer : any) {
-    console.log(answer)
   }
 }

@@ -22,7 +22,7 @@ export class ArticleCreateComponent implements OnInit, OnDestroy {
 
   user: any = ""
 
-  article:Article = {
+  article : Article = {
     id : 0,
     author : "",
     title: "",
@@ -48,9 +48,11 @@ export class ArticleCreateComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(async params => {
       this.url = params['url']
       if (this.url) {
-        this.article = <Article>await this.articleService.getArticleToEdit(this.url)
-        this.article.moreArticles
-        this.coverImage = this.article.coverImg
+        this.articleService.getArticleToEdit(this.url).subscribe((article : any) => {
+          this.article = article
+          this.article.moreArticles
+          this.coverImage = this.article.coverImg
+        })
       }
     });
     this.userSub = this.userService.getUserUpdateListener()
@@ -71,7 +73,7 @@ export class ArticleCreateComponent implements OnInit, OnDestroy {
     this.router.navigate(['/'])
   }
 
-  async onAddNewArticle() {
+  onAddNewArticle() {
     if (!this.article.title.trim()) {
       this._snackBar.open("Titlul e gol", "", {duration: 3000});
       return
@@ -90,15 +92,17 @@ export class ArticleCreateComponent implements OnInit, OnDestroy {
     }
     this.loadingService.setLoading(true)
     if (this.url) {
-      await this.articleService.editArticle(JSON.parse(JSON.stringify(this.article)))
-      this._snackBar.open("Articolul a fost actualizat", "", {duration: 3000});
+      this.articleService.editArticle(JSON.parse(JSON.stringify(this.article))).subscribe(() => {
+        this._snackBar.open("Articolul a fost actualizat", "", {duration: 3000});
+      })
     }
     else {
       this.article.author = this.user.uid
-      let data : any = await this.articleService.addArticle(JSON.parse(JSON.stringify(this.article)))
-      this.article.id = data.id
-      this.url = data.url
-      this._snackBar.open("Articolul a fost adăugat", "", {duration: 3000});
+      this.articleService.addArticle(JSON.parse(JSON.stringify(this.article))).subscribe((data : any) => {
+        this.article.id = data.id
+        this.url = data.url
+        this._snackBar.open("Articolul a fost adăugat", "", {duration: 3000});
+      })
     }
     this.loadingService.setLoading(false)
   }

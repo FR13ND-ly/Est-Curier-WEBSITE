@@ -18,14 +18,14 @@ export class DraftsComponent implements OnInit, OnDestroy {
 
     articles: any = [];
     private userSub: Subscription | undefined;
-    async ngOnInit() {
+    ngOnInit() {
         this.userSub = this.userService
             .getUserUpdateListener()
-            .subscribe(async (user: any) => {
+            .subscribe((user: any) => {
                 if (!user || !user.isStaff) {
                     this.router.navigate(['/']);
                 }
-                this.articles = await this.articleService.getDrafts();
+                this.articleService.getDrafts().subscribe((articles : any) => this.articles = articles);
             });
     }
 

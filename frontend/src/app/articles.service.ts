@@ -17,7 +17,7 @@ export class ArticlesService {
       survey.answers =  [].concat.apply([], survey.answers)
     });
     article.moreArticles =  [].concat.apply([], article.moreArticles)
-    return this.http.post(this.APIUrl + 'createArticle/', article).toPromise()
+    return this.http.post(this.APIUrl + 'createArticle/', article)
   }
 
   editArticle(article: any){
@@ -26,7 +26,7 @@ export class ArticlesService {
       survey.answers =  [].concat.apply([], survey.answers)
     });
     article.moreArticles =  [].concat.apply([], article.moreArticles)
-    return this.http.post(this.APIUrl + 'editArticle/', article).toPromise()
+    return this.http.post(this.APIUrl + 'editArticle/', article)
   }
 
   getArticle(url: string) {
@@ -62,10 +62,10 @@ export class ArticlesService {
   }
 
   getArticleToEdit(id : string) {
-    return this.http.get(`${this.APIUrl}getArticleToEdit/${id}/`).toPromise()
+    return this.http.get(`${this.APIUrl}getArticleToEdit/${id}/`)
   }
 
   getDrafts() {
-    return this.http.get(`${this.APIUrl}getDrafts/`).toPromise()
+    return this.http.get(`${this.APIUrl}getDrafts/`)
   }
 }

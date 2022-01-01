@@ -46,6 +46,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onAddComment(form: any) {
+        if (!form.value.text.trim()) return
         this.commentsService.addComment({
             text: form.value.text,
             photoURL: this.info.photoURL,

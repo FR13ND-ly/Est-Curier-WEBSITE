@@ -19,8 +19,7 @@ import { SliderComponent } from './articles/articles-list/slider/slider.componen
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ListsModule } from './lists/lists.module';
 import { SearchComponent } from './sidenavs/search/search.component';
-import { FileManagerComponent } from './file-manager/file-manager.component';
-import { ArticlesModule } from './articles/articles.module';
+import { FileManagerComponent } from './file-manager/file-manager.component'
 import { PreviewArticleModule } from './preview-article/preview-article.module';
 
 @NgModule({
@@ -45,7 +44,6 @@ import { PreviewArticleModule } from './preview-article/preview-article.module';
     HttpClientModule,
     AppRoutingModule,
     MaterialModule,
-    ArticlesModule,
     EditorModule,
     ReactiveFormsModule,
     ListsModule,

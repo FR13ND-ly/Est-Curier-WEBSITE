@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
-import { DraftsComponent } from './articles/drafts/drafts.component';
 import { ListDetailsComponent } from './lists/list-details/list-details.component';
 import { ListsComponent } from './lists/lists/lists.component';
 
@@ -15,9 +14,9 @@ const routes: Routes = [
   {path: 'lista/:id', component: ListDetailsComponent},
   {path: 'mica-publicitate', loadChildren: () => import('./ads/ads.module').then(m => m.AdsModule)},
   {path: 'fisiere', loadChildren: () => import('./files/files.module').then(m => m.FilesModule)},
-  {path: 'ciorne', component: DraftsComponent},
+  {path: 'ciorne', loadChildren: () => import('./articles/drafts/drafts.module').then(m => m.DraftsModule)},
   {path: 'despre-noi', loadChildren: () => import('./about/about.module').then(m => m.AboutModule)},
-  {path: '**', component: ArticlesListComponent}
+  {path: '**', redirectTo: ''}
 ];
 
 

@@ -1,5 +1,5 @@
 <div class="main">
-    <div class="slider" *ngIf="!loading">
+    <div class="slider" [style.display]="!loading ? 'flex' : 'none'">
         <a class="slide color1 shadow1 hoverable" *ngFor="let slide of slides.slice(0, 4)" style="background-image: url('{{ slide.cover }}');" href="/articol/{{ slide.url }}">
             <h1 class="slide-text">{{ slide.title }}</h1>
             <img class="slide-image" [src]="slide.cover">
@@ -8,7 +8,7 @@
             <mat-icon>apps</mat-icon>
         </div>
     </div>
-    <div class="slider loading" *ngIf="loading">
+    <div class="slider loading" [style.display]="loading ? 'flex' : 'none'">
         <div class="box" *ngFor="let slide of [1, 2, 3, 4]"></div>
     </div>
 </div>

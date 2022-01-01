@@ -37,7 +37,7 @@
             </button>
             <mat-icon class="header__sidenav-button hide-on-large" (click)="onOpenAccountNav()">menu</mat-icon>
             <a class="header__title" [class.awesomeTitle]="awesomeTitle" href="/">Est-Curier</a>
-            <mat-progress-bar class="header__loading" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+            <mat-progress-bar class="header__loading" mode="indeterminate" [style.display]="loading ? 'block' : 'none'"></mat-progress-bar>
         </header>
         <div class="body">
             <main>

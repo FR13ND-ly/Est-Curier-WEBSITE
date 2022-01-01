@@ -70,21 +70,19 @@
             >Publicitate</span
         >
     </div>
-    <div class="articles-wrapper" *ngIf="!loading">
+    <div class="articles-wrapper" [style.display]="!loading ? 'flex' : 'none'">
         <div class="left-side-articles">
             <a
                 class="article shadow1 color1 hoverable"
                 href="/articol/{{ articles[0]?.url }}"
-                id = "left-side-article1"
             >
                 <img class="article__image" src="{{ articles[0]?.cover }}" />
                 <h1 class="article__title">{{ articles[0]?.title }}</h1>
             </a>
             <a
-                class="article shadow1 color1 hoverable second"
+                class="article shadow1 color1 hoverable"
                 href="/articol/{{ articles[4]?.url }}"
-                *ngIf="!widget.activated"
-                id = "left-side-article2"
+                [style.display]="!widget?.activated ? 'flex' : 'none'"
             >
                 <img class="article__image" src="{{ articles[4]?.cover }}" />
                 <h1 class="article__title">{{ articles[4]?.title }}</h1>
@@ -92,7 +90,7 @@
             <a
                 class="article shadow1 color1 hoverable second"
                 href="/articol/{{ widget?.link }}"
-                *ngIf="widget.activated"
+                [style.display]="widget?.activated ? 'flex' : 'none'"
             >
                 <mat-icon class="article__monetization"
                     >monetization_on</mat-icon
@@ -110,11 +108,11 @@
                     class="feature-article__image"
                     src="{{ articles[1]?.cover }}"
                 />
-                <h1 class="feature-article__title text-color1">{{ articles[1]?.title }}</h1>
+                <h1 class="feature-article__title">{{ articles[1]?.title }}</h1>
             </a>
             <div class="small-articles-wrapper">
                 <a
-                    class="small-article"
+                    class="small-article shadow1 hoverable shadow1"
                     href="/articol/{{ articles[2]?.url }}"
                 >
                     <span class="small-article__text">{{
@@ -127,7 +125,7 @@
                     />
                 </a>
                 <a
-                    class="small-article"
+                    class="small-article shadow1 hoverable shadow1"
                     href="/articol/{{ articles[3]?.url }}"
                 >
                     <span class="small-article__text">{{
@@ -142,7 +140,7 @@
             </div>
         </div>
     </div>
-    <div class="articles-wrapper loading" *ngIf="loading">
+    <div class="articles-wrapper loading" [style.display]="loading ? 'block' : 'none'">
         <div class="left-side-articles">
             <a class="article shadow1 color1">
                 <div class="box"></div>

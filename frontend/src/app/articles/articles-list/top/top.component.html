@@ -1,4 +1,4 @@
-<div class="main" *ngIf="!loading">
+<div class="main" [style.display]="!loading ? 'flex' : 'none'">
     <div class="slider shadow1">
         <div class="slider__switch-buttons">
             <div
@@ -31,17 +31,17 @@
         </a>
         <a
             class="article shadow1"
-            href="{{ widget1.link }}"
-            *ngIf="widget1?.activated"
+            href="{{ widget1?.link }}"
+            [style.display]="widget1?.activated ? 'block' : 'none'"
             style="animation-delay: 0.2s"
         >
             <mat-icon class="article__monetization">monetization_on</mat-icon>
-            <span class="article__text">{{ widget1.text }}</span>
-            <img class="article__image" src="{{ widget1.image }}" />
+            <span class="article__text">{{ widget1?.text }}</span>
+            <img class="article__image" src="{{ widget1?.image }}" />
         </a>
     </div>
 </div>
-<div class="loading main" *ngIf="loading">
+<div class="loading main" [style.display]="loading ? 'block' : 'none'">
     <div class="slider">
         <div class="feature-box"></div>
     </div>
@@ -51,7 +51,7 @@
         <div class="box"></div>
     </div>
 </div>
-<div class="shadow1 live" href="widget2.link" *ngIf="widget2?.activated">
+<div class="shadow1 live" href="widget2.link" [style.display]="widget2?.activated ? 'block' : 'none'">
     <a [href]="widget2.link" *ngFor="let i of [1, 2, 3, 4, 5]"
         >#Live // {{ widget2.text }}</a
     >
