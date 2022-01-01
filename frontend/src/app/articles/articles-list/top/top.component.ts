@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from 'src/app/articles.service';
-import { LoadingService } from 'src/app/loading.service';
 import { WidgetsService } from 'src/app/widgets/widgets.service';
 
 @Component({
@@ -12,7 +11,6 @@ export class TopComponent implements OnInit {
     constructor(
         private articleService: ArticlesService,
         private widgetService: WidgetsService,
-        private loadingService: LoadingService
     ) {}
 
     articlesSlider: any = [];
@@ -25,7 +23,6 @@ export class TopComponent implements OnInit {
     loading: boolean = true;
 
     ngOnInit() {
-        this.loadingService.setLoading(true);
         this.interval = setInterval(() => {
             this.selectedIndex = ++this.selectedIndex % 5;
             this.resetAnimation()
@@ -40,7 +37,6 @@ export class TopComponent implements OnInit {
         this.widgetService.getWidget(1).subscribe((widget : any) => this.widget1 = widget);
         this.widgetService.getWidget(5).subscribe((widget: any) => this.widget2 = widget);
         this.loading = false;
-        this.loadingService.setLoading(false);
     }
 
     resetAnimation() {
