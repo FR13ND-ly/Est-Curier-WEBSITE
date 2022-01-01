@@ -119,7 +119,7 @@ def getSurvey(request):
             variant = {
                 "id": variant.id,
                 "content": variant.content,
-                "voted": True if Vote.objects.filter(user=data['token'], variant=variant.id).count() else False,
+                "voted": bool(Vote.objects.filter(user=data['token'], variant=variant.id).count()),
                 "votes": Vote.objects.filter(variant=variant.id).count()
             }
             survey_raw['variants'].append(variant)

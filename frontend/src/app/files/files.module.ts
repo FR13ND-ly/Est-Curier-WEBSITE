@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FilesComponent } from './files.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
+import { FilesRoutingModule } from './files-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { MaterialModule } from '../material.module';
   imports: [
     FormsModule,
     MaterialModule,
-    CommonModule
+    CommonModule,
+    FilesRoutingModule
   ]
 })
 export class FilesModule { }

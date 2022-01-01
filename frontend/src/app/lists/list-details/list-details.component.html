@@ -77,8 +77,8 @@
         </a>
     </div>
 </div>
-<div class="main loading" *ngIf="loading">
-    <div class="info color1 shadow1">
+<div class="root loading" *ngIf="loading">
+    <div class="list-info color1 shadow1">
         <div class="preview">
             <div class="preview-box"></div>
         </div>
@@ -91,14 +91,11 @@
         </div>
     </div>
     <div class="articles">
-        <div
-            class="article color1 shadow1 hoverable"
-            *ngFor="let article of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-        >
-            <div class="article-image">
-                <div class="cover-box"></div>
+        <div class="article color1 shadow1" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7]">
+            <div class="article__image-wrapper">
+                <div class="article__image"></div>
             </div>
-            <div class="article-content">
+            <div class="article__content-wrapper">
                 <h1></h1>
                 <h2></h2>
             </div>

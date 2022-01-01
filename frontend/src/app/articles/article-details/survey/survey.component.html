@@ -5,9 +5,9 @@
             <mat-icon class="survey__arrow-left" (click)="changeSurvey(1)">chevron_left</mat-icon>
             <mat-icon class="survey__arrow-right" (click)="changeSurvey(0)">chevron_right</mat-icon>
         </div>
-        <div class="variant" [class.color2]="variant?.voted" (click)="onVote(variant?.id)" *ngFor="let variant of surveys[selected]?.variants">
+        <div class="variant" (click)="onVote(variant?.id)" *ngFor="let variant of surveys[selected]?.variants">
             <h3 class="variant__content">{{ variant.content }}<span class="variant__votes-total">{{ variant.votes }}</span></h3>
-            <div class="variant__votes-line color3" [style.width.%]="variant.votes * 100 / surveys[selected].votes "></div>
+            <div class="variant__votes-line color3" [class.voted]="variant?.voted" [style.width.%]="variant.votes * 100 / surveys[selected].votes "></div>
         </div>
     </div>
 </div>

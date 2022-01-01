@@ -14,7 +14,7 @@ export class FilesComponent implements OnInit, OnDestroy {
         private fileService: FileService,
         private userService: UserService,
         private router: Router
-    ) {}
+    ) { }
     files: any = [];
     index: number = 1;
     noMoreFiles: boolean = false;

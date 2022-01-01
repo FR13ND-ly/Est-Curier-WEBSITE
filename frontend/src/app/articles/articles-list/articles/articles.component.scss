@@ -151,6 +151,10 @@
         background-color: #ccc;
         animation: loading 1.4s infinite;
     }
+    .article {
+        opacity: 1;
+        transform: translateY(0);
+    }
     .side {
         width: 100%;
     }

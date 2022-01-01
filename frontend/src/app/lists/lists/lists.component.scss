@@ -22,10 +22,10 @@
             transform: scaleX(0);
             transition: all 0.5s ease-in-out;
         }
-        &:hover:before {
-            visibility: visible;
-            transform: scaleX(1);
-        }
+    }
+    &:hover &__name:before {
+        visibility: visible;
+        transform: scaleX(1);
     }
 }
 
@@ -106,12 +106,21 @@
 }
 
 .loading {
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     h1 {
-        height: 3.5rem;
-        width: 60%;
         background-color: #ccc;
         border-radius: 10px;
+        height: 3rem;
+        width: 50%;
         animation: loading 1.4s infinite alternate;
+    }
+    .articles-wrapper {
+        width: 100%;
+        margin-top: 0;
     }
     .box {
         height: 15rem;
