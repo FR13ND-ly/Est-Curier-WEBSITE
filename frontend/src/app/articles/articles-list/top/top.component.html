@@ -52,7 +52,7 @@
     </div>
 </div>
 <div class="shadow1 live" href="widget2.link" [style.display]="widget2?.activated ? 'block' : 'none'">
-    <a [href]="widget2.link" *ngFor="let i of [1, 2, 3, 4, 5]"
-        >#Live // {{ widget2.text }}</a
+    <a [href]="widget2?.link" *ngFor="let i of [1, 2, 3, 4, 5]"
+        >#Live // {{ widget2?.text }}</a
     >
 </div>
