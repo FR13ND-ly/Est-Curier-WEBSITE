@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -18,6 +19,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [],
@@ -33,6 +35,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatCheckboxModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatExpansionModule,
     MatTabsModule,
     MatProgressBarModule,
     MatSlideToggleModule,
@@ -40,7 +43,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSliderModule,
     MatBadgeModule,
     MatSelectModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    DragDropModule,
   ]
 })
 export class MaterialModule { }

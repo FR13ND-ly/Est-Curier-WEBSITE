@@ -3,7 +3,6 @@ import { ListsComponent } from './lists/lists.component';
 import { ListDetailsComponent } from './list-details/list-details.component';
 import { MaterialModule } from '../material.module';
 import { PreviewArticleModule } from '../preview-article/preview-article.module';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -12,8 +11,7 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     MaterialModule,
-    PreviewArticleModule,
-    CommonModule
+    PreviewArticleModule
   ],
   exports: [
     ListsComponent,

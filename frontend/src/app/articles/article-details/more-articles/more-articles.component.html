@@ -2,7 +2,7 @@
     <a
         class="widget shadow1 color1 hoverable"
         href="/articol/{{ widget?.link }}"
-        [style.display]="widget?.activated ? 'block' : 'none'"
+        *ngIf="widget?.activated"
     >
         <mat-icon class="widget__monetization">monetization_on</mat-icon>
         <img class="widget__image" src="{{ widget?.image }}" />
