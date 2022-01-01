@@ -2,3 +2,4 @@ EC-workspace/
 backend/media/
 backend/db.sqlite3
 frontend/src/app/config.ts
+frontend/nx.json
