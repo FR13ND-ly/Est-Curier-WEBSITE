@@ -311,6 +311,16 @@ app-more-articles {
             }
         }
     }
+    .loading { 
+        .tag {
+            width: 2rem;
+        }
+        h1 {
+            height: 4rem;
+            margin-bottom: 4%;
+        }
+
+    }
 }
 
 @keyframes socialAppear {

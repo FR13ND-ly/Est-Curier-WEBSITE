@@ -79,13 +79,6 @@ footer {
     animation: top2 .15s;
 }
 
-
-
-
-
-
-
-
 .sidenav {
     width: 25%;
 }
@@ -193,42 +186,23 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
-    .sidenav {
-        width: 100%;
-    }
-    .search-button {
-        right: 2%;
-        margin-top: 2px;
-    }
-    
-    .sidenav-button {
-        left: 2%;
-    }
-    .header-title {
-        color: #0288d1;
-        cursor: pointer;
-        font-size: 22px;
-        margin-top: 13px;
-    }
     .header {
-        position: fixed;
-        width: 90%;
         height: 3rem;
-        left: 4.5%;
-        top: 2%;
-        border-radius: 15px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        box-shadow: 0 8px 17px 2px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%), 0 5px 5px -3px rgb(0 0 0 / 20%);
-        text-align: center;
-        user-select: none;
-        z-index: 999999;
-        align-items: center;
-        mat-icon {
+        left: 4%;
+        width: 90%;
+        &__title {
+            font-size: 22px;
+        }
+        &__change-theme-button, &__search-button, &__sidenav-button {
             font-size: 20px;
             margin-top: 8%;
         }
+        &__search-button {
+            right: 2%;
+        }
+    }
+    .sidenav {
+        width: 100%;
     }
     .body {
         margin: 4.5rem 0 0 5%;
@@ -243,15 +217,15 @@ footer {
         animation: top0 .5s;
     }
 
-    footer {
+    .footer {
         width: 105%;
         margin-left: -5%!important;
         border-radius: 0;
         margin: 0%;
-        .footer-title {
+        &__title {
             margin-top: 3%;
         }
-        .footer-copyright {
+        &__copyright {
             margin: 6% 0 4% 5%;
         }
         .socials .social {

@@ -1,5 +1,5 @@
 export const config = {
-    apiUrl: 'http://127.0.0.1:8000/api/',
+    apiUrl: 'http://estcurier.pythonanywhere.com/api/',
     firebaseConfig: {
         apiKey: 'AIzaSyCVAEO0vg3nYGEMfk8ptDcbmYhu1dqAj24',
         authDomain: 'escu-ebe2e.firebaseapp.com',

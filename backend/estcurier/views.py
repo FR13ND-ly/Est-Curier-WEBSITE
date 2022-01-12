@@ -22,7 +22,8 @@ locale.setlocale(locale.LC_ALL, 'ro')
 
 utc = pytz.UTC
 
-apiUrl = "http://127.0.0.1:8000/api"
+apiUrl = "http://estcurier.pythonanywhere.com"
+frontendUrl = "https://est-curier.herokuapp.com/"
 
 
 def formatDate(date):
@@ -69,7 +70,7 @@ def getArticle(request, url):
     moreArticles = []
     for urlRaw in article.moreArticles.split(','):
         url = urlRaw.replace(
-            'http://localhost:4200/articol/', '').replace('/', '')
+            frontendUrl, '').replace('/', '')
         if (url.replace('[', '').replace(']', '')):
             moreArticle = Article.objects.filter(url=url)
             if (moreArticle.count()):
@@ -246,7 +247,7 @@ def addMoreArticles(moreArticles, id):
         if (len(moreArticles) > 2):
             break
         if article.id != id:
-            moreArticles.append("http://localhost:4200/articol/" + article.url)
+            moreArticles.append(frontendUrl + article.url)
     return moreArticles
 
 

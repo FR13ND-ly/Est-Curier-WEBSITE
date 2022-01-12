@@ -74,7 +74,7 @@ export class TextEditorComponent implements OnInit {
 
   onAddImage() {
     let fileManager = this.dialog.open(FileManagerComponent, {
-      autoFocus: true,
+      autoFocus: false,
       panelClass: 'file-manager',
       data: {
         selected : -1,
@@ -85,15 +85,15 @@ export class TextEditorComponent implements OnInit {
     fileManager.afterClosed().subscribe(result => {
       result.actualImage;
       let editImageDialog = this.dialog.open(EditImageComponent, {
+        autoFocus: false,
         data: {
           actualImage : result.actualImage,
           align : 'left',
           size : '50%',
-          legend : ''
         }
       })
       editImageDialog.afterClosed().subscribe(data => {
-        this.format("insertHTML", `<img title="${data.legend}" align="${data.align}" style="width: ${data.size}" src="${result.actualImage}"/>`)
+        this.format("insertHTML", `<img align="${data.align}" style="width: ${data.size}" src="${result.actualImage}"/>`)
       })
     });
   }

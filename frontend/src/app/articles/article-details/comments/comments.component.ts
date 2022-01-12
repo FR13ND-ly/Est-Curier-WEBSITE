@@ -57,6 +57,9 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     removeComment(id: any) {
-        this.commentsService.removeComment(id, this.info.id);
+        let message = confirm("Ești sigur că dorești să ștergi comentariul?")
+        if (message){
+            this.commentsService.removeComment(id, this.info.id);
+        }
     }
 }
